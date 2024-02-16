@@ -1,4 +1,4 @@
-# May and probably will fail certain test cases.
+# May and probably will fail certain test cases. Probably and should give it a better name.
 
 class Text:
     """Text class for input file."""
@@ -52,14 +52,12 @@ class Text:
                 a = ogfl[i*mnlef:(i+1)*mnlef]
                 for line in a:
                     line = str(line)
-                    #a = a.replace("[", "").replace("]", "")
                     new_file.writelines(line[1:-2] + "\n")
 
             else:
                 b = ogfl[i*mnlef::]
                 for line in b:
                     line = str(line)
-                    #b = b.replace("[", "").replace("]", "")
                     new_file.writelines(line[1:-2] + "\n")
 
 
