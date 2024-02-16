@@ -11,7 +11,7 @@ with open("inputs/big.txt", "r") as f:
 file_lines = [lines.replace("\n", '') for lines in file_lines]
 #print(file_lines)
 lines = Text(file_lines)
-lines.create_smaller_files(NO_lines=len(file_lines), divlines=12, extension='dat')    # could potentially have one more than divline based on remainder
+lines.create_smaller_files(NO_lines=len(file_lines), divfiles=12, extension='dat')    # could potentially have one more than divline based on remainder
 
 
 with open("inputs/16_missile.txt", "r") as f:

@@ -13,7 +13,7 @@ finder = text.find_word
 Here, applying `finder(word)[0]` will return the number of times `word` appears in `input_text` and `finder(word)[1]` will return the starting positions of the first charachter of `word` in `input_text`. <br>
 
 ## Dividing Large Files Into Smaller Files
-The `create_smaller_files` method of the `Text` class divides the input file into a desired amount of smaller files potentially plus one depending on the input file. It can make the output files into any desired extension.
+The `create_smaller_files` method of the `Text` class divides the input file into a desired amount of smaller files. It can make the output files into any desired extension.
 
 ```
 with open("big.txt", "r") as f:
@@ -21,5 +21,6 @@ with open("big.txt", "r") as f:
 
 file_lines = [lines.replace("\n", '') for lines in file_lines]
 lines = Text(file_lines)
-lines.create_smaller_files(NO_lines=len(file_lines), divlines=12, extension='dat')
+lines.create_smaller_files(NO_lines=len(file_lines), divfiles=12, extension='dat')
 ```
+`NO_lines` is the number of lines in the input files and `divfiles` is the number of files the input file will be divided into. The file could potential be divided into one more than `divfiles` depending on the number of lines in the input file. The new files will be named `𝚤_file.extension` where `𝚤` starts from `0`.
