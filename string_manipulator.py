@@ -1,4 +1,4 @@
-# May and probably will fail certain test cases. Probably and should give it a better name.
+# May and probably will fail certain test cases. Could give it a better name, maybe not?
 
 class Text:
     """Text class for input file."""
@@ -75,4 +75,4 @@ if __name__ == '__main__':
 
     file_lines = [lines.replace("\n", '') for lines in file_lines]
     lines = Text(file_lines)
-    lines.create_smaller_files(NO_lines=len(file_lines), divfiles=12)    # could potentially have one more than divline based on remainder
+    lines.create_smaller_files(NO_lines=len(file_lines), divfiles=12)    # could potentially have one more than divfile based on remainder

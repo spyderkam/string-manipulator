@@ -23,4 +23,5 @@ file_lines = [lines.replace("\n", '') for lines in file_lines]
 lines = Text(file_lines)
 lines.create_smaller_files(NO_lines=len(file_lines), divfiles=12, extension='dat')
 ```
-`NO_lines` is the number of lines in the input files and `divfiles` is the number of files the input file will be divided into. The file could potential be divided into one more than `divfiles` depending on the number of lines in the input file. The new files will be named `𝚤_file.extension` where `𝚤` starts from `0`.
+`NO_lines` is the number of lines in the input files and `divfiles` is the number of files the input file will be divided into. The file could potential be divided into one more than `divfiles` depending on the number of lines in the input file. The new files will be named `𝚤_file.extension` where `𝚤` starts from `0`. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;To start, please make sure a directory named `new_files` is in the directory which `string_manipulator` is executed.
