@@ -11,7 +11,7 @@ text = string_manipulator.Text(input_text)
 finder = text.find_word
 ```
 
-Here, applying `finder(word)[0]` will return the number of times `word` appears in `input_text` and `finder(word)[1]` will return the starting positions of the first charachter of `word` in `input_text`. <br>
+Here, applying `finder(word)[0]` will return the number of times `word` appears in the inputted string and `finder(word)[1]` will return the starting positions of the first charachter of `word` in input string. <br>
 
 ## Dividing Large Files Into Smaller Files
 
