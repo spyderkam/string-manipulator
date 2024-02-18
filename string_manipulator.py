@@ -6,6 +6,7 @@ class Text:
     def __init__(self, text):
         self.text = text
 
+
     def find_word(self, word):
         """Finding a specific word in the input text; how many times it appears and in what positions."""
 
@@ -29,14 +30,13 @@ class Text:
                 break
         return len(index_list), index_list
 
+
     def create_smaller_files(self, NO_lines, divfiles, extension='txt'):     # NO_lines = number of lines in original file; divfiles ≈ how many lines in divided files
         """Divide larger file into a divfiles number of files potentially + 1."""
 
         ogfl = self.text     # original file lines
         remainder = NO_lines % divfiles
-
-        #foo = NO_lines - remainder
-        mnlef = int( (NO_lines - remainder)/divfiles )     # (m)ax (N)o of (l)ines in (e)ach (f)ile
+        mnlef = int( (NO_lines - remainder)/divfiles )     # (m)ax (N)o of (l)ines in (e)ach (f)ile; Always an integer but data needs to be int for indexing.
 
         if remainder != 0:
             # NO_new_files will be a list containing the number of files (0 and so on)
@@ -52,13 +52,14 @@ class Text:
                 a = ogfl[i*mnlef:(i+1)*mnlef]
                 for line in a:
                     line = str(line)
-                    new_file.writelines(line[1:-2] + "\n")
+                    new_file.writelines(line[1:-2] + "\n")     # 1 to -2 in order to eliminate printed quote symbols
 
             else:
-                b = ogfl[i*mnlef::]
+                b = ogfl[i*mnlef::]                            # in case number of lines is less than mnlef
                 for line in b:
                     line = str(line)
                     new_file.writelines(line[1:-2] + "\n")
+
 
 
 if __name__ == '__main__':
