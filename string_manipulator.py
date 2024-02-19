@@ -11,9 +11,9 @@ class Text:
         """Finding a specific word in the input text; how many times it appears and in what positions."""
 
         if word != word.lower():
-            raise ValueError("Enter word in all lowercase.")
+            raise ValueError("Enter word in all lowercase.")     # This method can definetly be upgraded.
 
-        TEXT = self.text
+        TEXT = self.text     # Using a variable placeholder for self.text so that self.text would not be modified.
         index_list = []
         word_in_text = True
 
@@ -44,19 +44,19 @@ class Text:
         else:
             NO_new_files = divfiles
 
-        # when in Unix can use subprocess to create smaller_files directory here
+        # When in Unix can use subprocess to create smaller_files directory here.
         for i in range(NO_new_files):
             new_file = open(f"smaller_files/{i}_file.{extension}", "w")
 
             if i + 1 != NO_new_files:
-                a = ogfl[i*mnlef:(i+1)*mnlef]
-                for line in a:
+                lines_to_write = ogfl[i*mnlef:(i+1)*mnlef]
+                for line in lines_to_write:
                     line = str(line)
                     new_file.writelines(line[1:-2] + "\n")     # 1 to -2 in order to eliminate printed quote symbols
 
             else:
-                b = ogfl[i*mnlef::]                            # in case number of lines is less than mnlef
-                for line in b:
+                lines_to_write = ogfl[i*mnlef::]                            # in case number of lines is less than mnlef
+                for line in lines_to_write:
                     line = str(line)
                     new_file.writelines(line[1:-2] + "\n")
 
@@ -76,4 +76,4 @@ if __name__ == '__main__':
 
     file_lines = [lines.replace("\n", '') for lines in file_lines]
     lines = Text(file_lines)
-    lines.create_smaller_files(NO_lines=len(file_lines), divfiles=12)    # could potentially have one more than divfile based on remainder
+    lines.create_smaller_files(NO_lines=len(file_lines), divfiles=12)     # Could potentially have one more than divfile based on remainder.
