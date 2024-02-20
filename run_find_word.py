@@ -1,6 +1,6 @@
 from glob import glob
+from numpy import sum
 from string_manipulator import Text     # As of now string_manipulator only has Text class.
-import numpy as np
 
 
 word = input(f"What is the word you want to find? ").lower()
@@ -21,7 +21,7 @@ elif o_or_m == 'm':
     this_dir_yn = input("Are the files in the current directory? Enter 'y' for yes or 'n' for no: ")
 
     texts = []
-    no_times = []      # list of number of times the word appears in each file
+    No_times = []      # list of number of times the word appears in each file
     # indexes = []     # list of the first index of the word in each file (list of lists)
     
     if this_dir_yn == 'n':
@@ -34,16 +34,15 @@ elif o_or_m == 'm':
     else:
         raise ValueError("YOU MUST ENTER 'y' FOR YES OR 'n' FOR NO!")
         
-
     for file in files:
         with open(file, "r") as f:
             datum = f.read().lower()
         texts.append( Text(datum) )
     
     for text in texts:
-        no_times.append( text.find_word(word)[0] )
+        No_times.append( text.find_word(word)[0] )
         #indexes.append( text.find_word(word)[1] )
 
-    print(f"The number of times '{word}' appears in these files is '{np.sum(no_times)}'.")     # Currently no index output applied here...
+    print(f"The number of times '{word}' appears in these files is '{sum(No_times)}'.")     # Currently no index output applied here...
 else:
     raise ValueError("YOU MUST ENTER 'o' FOR ONE OR 'm' FOR MULTIPLE!")
