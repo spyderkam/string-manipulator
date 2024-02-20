@@ -1,5 +1,4 @@
 from glob import glob
-from numpy import sum
 from string_manipulator import Text     # As of now string_manipulator only has Text class.
 
 
