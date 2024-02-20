@@ -5,7 +5,8 @@
 
 from string_manipulator import *
 
-with open("inputs/big.txt", "r") as f:
+file_path1 = "inputs/big.txt"
+with open(file_path1, "r") as f:
     file_lines = f.readlines()
 
 file_lines = [lines.replace("\n", '') for lines in file_lines]
@@ -14,7 +15,8 @@ lines = Text(file_lines)
 lines.create_smaller_files(NO_lines=len(file_lines), divfiles=12, extension='dat')    # could potentially have one more than divline based on remainder
 
 
-with open("inputs/16_missile.txt", "r") as f:
+file_path2 = "inputs/16_missile.txt"
+with open(file_path2, "r") as f:
     data = f.read().lower()
 
 text = Text(data)

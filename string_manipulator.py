@@ -36,7 +36,7 @@ class Text:
 
         ogfl = self.text     # original file lines
         remainder = NO_lines % divfiles
-        mnlef = int( (NO_lines - remainder)/divfiles )     # (m)ax (N)o of (l)ines in (e)ach (f)ile; Always an integer but data needs to be int for indexing.
+        mnlef = int( (NO_lines - remainder)/divfiles )     # (m)ax (N)o of (l)ines in (e)ach (f)ile; Always an integer but data type needs to be int for indexing.
 
         if remainder != 0:
             # NO_new_files will be a list containing the number of files (0 and so on)
