@@ -31,24 +31,24 @@ class Text:
         return len(index_list), index_list
 
 
-    def split_by_lines(self, NO_lines, divfiles, extension='txt'):     # NO_lines = number of lines in original file; divfiles ≈ how many lines in divided files
+    def split_by_lines(self, No_lines, divfiles, extension='txt'):     # No_lines = number of lines in original file; divfiles ≈ how many lines in divided files
         """Divide larger file into a divfiles number of files potentially + 1."""
 
         ogfl = self.text     # original file lines
-        remainder = NO_lines % divfiles
-        mnlef = int( (NO_lines - remainder)/divfiles )     # (m)ax (N)o of (l)ines in (e)ach (f)ile; Always an integer but data type needs to be int for indexing.
+        remainder = No_lines % divfiles
+        mnlef = int( (No_lines - remainder)/divfiles )     # (m)ax (N)o of (l)ines in (e)ach (f)ile; Always an integer but data type needs to be int for indexing.
 
         if remainder != 0:
-            # NO_new_files will be a list containing the number of files (0 and so on)
-            NO_new_files = divfiles + 1
+            # No_new_files will be a list containing the number of files (0 and so on)
+            No_new_files = divfiles + 1
         else:
-            NO_new_files = divfiles
+            No_new_files = divfiles
 
         # When in Unix can use subprocess to create smaller_files directory here.
-        for i in range(NO_new_files):
+        for i in range(No_new_files):
             new_file = open(f"smaller_files/{i}_file.{extension}", "w")
 
-            if i + 1 != NO_new_files:
+            if i + 1 != No_new_files:
                 lines_to_write = ogfl[i*mnlef:(i+1)*mnlef]
                 for line in lines_to_write:
                     line = str(line)
@@ -76,4 +76,4 @@ if __name__ == '__main__':
 
     file_lines = [lines.replace("\n", '') for lines in file_lines]
     lines = Text(file_lines)
-    lines.split_by_lines(NO_lines=len(file_lines), divfiles=12)     # Could potentially have one more than divfile based on remainder.
+    lines.split_by_lines(No_lines=len(file_lines), divfiles=12)     # Could potentially have one more than divfile based on remainder.
