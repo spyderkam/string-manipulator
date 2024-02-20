@@ -31,7 +31,7 @@ class Text:
         return len(index_list), index_list
 
 
-    def create_smaller_files(self, NO_lines, divfiles, extension='txt'):     # NO_lines = number of lines in original file; divfiles ≈ how many lines in divided files
+    def split_by_lines(self, NO_lines, divfiles, extension='txt'):     # NO_lines = number of lines in original file; divfiles ≈ how many lines in divided files
         """Divide larger file into a divfiles number of files potentially + 1."""
 
         ogfl = self.text     # original file lines
@@ -64,7 +64,7 @@ class Text:
 
 if __name__ == '__main__':
     # https://www.askpython.com/python/examples/read-file-as-string-in-python
-    with open("inputs/16_missile.txt", "r") as f:
+    with open("inputs/missile16.fort13", "r") as f:
         data = f.read().lower()
 
     text = Text(data)
@@ -76,4 +76,4 @@ if __name__ == '__main__':
 
     file_lines = [lines.replace("\n", '') for lines in file_lines]
     lines = Text(file_lines)
-    lines.create_smaller_files(NO_lines=len(file_lines), divfiles=12)     # Could potentially have one more than divfile based on remainder.
+    lines.split_by_lines(NO_lines=len(file_lines), divfiles=12)     # Could potentially have one more than divfile based on remainder.
