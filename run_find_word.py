@@ -32,7 +32,7 @@ elif o_or_m == 'm':
         files = sorted(glob(f"*.{ext}"))                 # Not sure of it needs to be sorted but it can't hurt...
         if len(files) == 0: raise ValueError(f"Something went wrong, no files with extension '{ext}' found in this directory!")    
     else:
-        raise ValueError("YOU MUST TO ENTER 'y' FOR YES OR 'n' FOR NO!")
+        raise ValueError("YOU MUST ENTER 'y' FOR YES OR 'n' FOR NO!")
         
 
     for file in files:
@@ -46,4 +46,4 @@ elif o_or_m == 'm':
 
     print(f"The number of times '{word}' appears in these files is '{np.sum(no_times)}'.")     # Currently no index output applied here...
 else:
-    raise ValueError("YOU MUST TO ENTER 'o' FOR ONE OR 'm' FOR MULTIPLE!")
+    raise ValueError("YOU MUST ENTER 'o' FOR ONE OR 'm' FOR MULTIPLE!")
