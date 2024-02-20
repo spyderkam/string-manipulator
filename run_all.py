@@ -12,10 +12,10 @@ print(f"The words missile appears {finder('missile')[0]} times in the file 16_mi
 
 file_path2 = "inputs/big.txt"
 with open(file_path2, "r") as f:
-    file_lines = f.readlines()
+    all_file_lines = f.readlines()
 
-file_lines = [lines.replace("\n", '') for lines in file_lines]
-# print(file_lines)
-lines = Text(file_lines)
+all_file_lines = [lines.replace("\n", '') for lines in file_lines]
+# print(all_file_lines)
+all_lines = Text(all_file_lines)
 # could potentially have one more than divline based on remainder
-lines.split_by_lines(NO_lines=len(file_lines), divfiles=11, extension='dat')
+all_lines.split_by_lines(NO_lines=len(file_lines), divfiles=11, extension='dat')
