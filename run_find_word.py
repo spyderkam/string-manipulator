@@ -4,7 +4,7 @@ import numpy as np
 
 
 word = input(f"What is the word you want to find? ").lower()
-o_or_m = input(f"Do you want to find the word '{word}' in a just one file or multiple files with a specific extension? Enter 'o' for one or 'm' for multiple: ")
+o_or_m = input(f"Do you want to find the word '{word}' in just one file or multiple files with a specific extension? Enter 'o' for one or 'm' for multiple: ")
 
 
 if o_or_m == 'o':
@@ -15,7 +15,7 @@ if o_or_m == 'o':
     text = Text(datum)
     finder = text.find_word
     
-    print(f"The word '{word}' appears '{finder(word)[0]}' times in '{file_path}' at positions '{finder(word)[1]}.'")
+    print(f"The word '{word}' appears '{finder(word)[0]}' times in '{file_path}' at positions '{finder(word)[1]}'.")
 elif o_or_m == 'm':
     ext = input("Type the extension of the files: ")
     this_dir_yn = input("Are the files in the current directory? Enter 'y' for yes or 'n' for no: ")
@@ -44,6 +44,6 @@ elif o_or_m == 'm':
         no_times.append( text.find_word(word)[0] )
         #indexes.append( text.find_word(word)[1] )
 
-    print(f"The number of times '{word}' appears in these files is '{np.sum(no_times)}.'")     # Currently no index output applied here...
+    print(f"The number of times '{word}' appears in these files is '{np.sum(no_times)}'.")     # Currently no index output applied here...
 else:
     raise ValueError("YOU MUST TO ENTER 'o' FOR ONE OR 'm' FOR MULTIPLE!")
