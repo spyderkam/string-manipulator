@@ -14,8 +14,8 @@ file_path2 = "inputs/big.txt"
 with open(file_path2, "r") as f:
     all_file_lines = f.readlines()
 
-all_file_lines = [lines.replace("\n", '') for lines in file_lines]
+all_file_lines = [lines.replace("\n", '') for lines in all_file_lines]
 # print(all_file_lines)
 all_lines = Text(all_file_lines)
-# could potentially have one more than divline based on remainder
-all_lines.split_by_lines(NO_lines=len(file_lines), divfiles=11, extension='dat')
+# Could potentially have one more than divline based on remainder of NO_lines/divfiles
+all_lines.split_by_lines(NO_lines=len(all_file_lines), divfiles=11, extension='dat')     # See divfiles=11 vs divfiles=12
