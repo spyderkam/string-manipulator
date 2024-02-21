@@ -55,7 +55,7 @@ class Text:
                     new_file.writelines(line[1:-2] + "\n")     # 1 to -2 in order to eliminate printed quote symbols
 
             else:
-                lines_to_write = ogfl[i*mnlef::]                            # in case number of lines is less than mnlef
+                lines_to_write = ogfl[i*mnlef::]               # in case number of lines is less than mnlef
                 for line in lines_to_write:
                     line = str(line)
                     new_file.writelines(line[1:-2] + "\n")
