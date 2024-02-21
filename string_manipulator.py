@@ -65,15 +65,6 @@ class Text:
             new_file.close()
 
 
-
-
-
-
-
-
-
-
-
     def split_by_size(self, size, ext, dir):     # size = size of the new files in bytes, ext = file extension, dir = directory store put output files
         """Divide larger file into smaller files based on size."""
         # ABSTRACT: https://stackoverflow.com/questions/8096614/split-large-files-using-python/8096846#8096846
@@ -93,15 +84,6 @@ class Text:
                 outFile.close()
 
                 file_number += 1
-
-
-
-
-
-
-
-
-
 
 
 
