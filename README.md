@@ -43,3 +43,5 @@ file.split_by_size(size, ext, dir)
 `size` is the size of the output files in bytes, `ext` is the extension of both the input and output files, and `dir` is the directory which the *output files* will be stored in. If `dir` does not exist then the program will create it. The new files will be named `outFile𝚤.ext` where `𝚤` starts from `0`. <br>
 
 ## Automatic Execution of Methods
+
+If you wish to automatically have these methods applied, simply just execute one of the `run_method.py` scripts. Once any one of them has been ran, a series of questions will be prompted in the terminal's user interface and you can apply the respective method to one or multiple files in the directory or a subdirectory. (`run_split_by_line.py` is currently in development and please ignore `run_all.py`.)
