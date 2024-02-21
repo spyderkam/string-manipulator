@@ -59,6 +59,7 @@ class Text:
                 for line in lines_to_write:
                     line = str(line)
                     new_file.writelines(line[1:-2] + "\n")
+            new_file.close()
 
 
 
