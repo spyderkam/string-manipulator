@@ -1,6 +1,8 @@
 # May and probably will fail certain test cases. Could give it a better name, maybe not?
 
+import shutil
 import subprocess
+import os
 
 
 class Text:
@@ -33,9 +35,10 @@ class Text:
                 break
         return len(index_list), index_list
 
-
-    def split_by_lines(self, No_lines, divfiles, extension='txt'):     # No_lines = number of lines in original file; divfiles ≈ how many lines in divided files
+    
+    def divide_by_lines(self, No_lines, divfiles, extension='txt'):     # No_lines = number of lines in original file; divfiles ≈ how many new files
         """Divide larger file into a divfiles number of files potentially + 1."""
+        # I overcomplicated this.
 
         ogfl = self.text     # original file lines
         remainder = No_lines % divfiles
@@ -47,9 +50,9 @@ class Text:
         else:
             No_new_files = divfiles
 
-        # When in Unix can use subprocess to create smaller_files directory here.
+        subprocess.call(f"mkdir divfiles", shell=True)     # Must use shell=True otherwise doesn't work on Windows.
         for i in range(No_new_files):
-            new_file = open(f"less_line_files/{i}_file.{extension}", "w")
+            new_file = open(f"divfiles/{i}_file.{extension}", "w")
 
             if i + 1 != No_new_files:
                 lines_to_write = ogfl[i*mnlef:(i+1)*mnlef]
@@ -65,7 +68,60 @@ class Text:
             new_file.close()
 
 
-    def split_by_size(self, size, ext, dir):     # size = size of the new files in bytes, ext = file extension, dir = directory store put output files
+
+    def split_by_lines(self, divlines, ext, dir):     # divlines = max lines in divided files, ext = file extension, dir = directory to store put output files
+        """Split input file into output files that have divlines number of lines in them."""
+
+        ogf = self.text     # original file
+        subprocess.call(f"mkdir {dir}", shell=True)     # Must use shell=True otherwise doesn't work on Windows.
+        
+        """
+        f = open(ogf, "r")
+        g = open("temp_file.txt", "w")
+        shutil.copyfile(f, g)
+
+        
+        
+        while count < divlines:
+            count = 0
+            h = open(f"{dir}splittedFile_{count}.{ext}")
+            for line in g:
+                h.write(line + "\n")
+            h.close()
+        """
+
+        file_number = 0
+        f = open(ogf, "r")
+        g = f.read()
+
+        while True:
+            if not g: break
+            outFile = open(f"{dir}/splittedFile_{file_number}.{ext}", "w")
+
+            
+
+            for i in range(divlines):
+                x = g.find('\n')
+                h = g[0:x]
+                outFile.write(h + "\n")
+
+                
+                g = g.lstrip(h).lstrip()
+            outFile.close()
+
+            #if os.path.getsize(f"{dir}/splittedFile_{file_number}.{ext}") == 0:
+            #    os.remove(f"{dir}/splittedFile_{file_number}.{ext}")
+            #    print(file_number)
+            #print(file_number, os.path.getsize(f"{dir}/splittedFile_{file_number}.{ext}"))
+                
+            file_number = file_number + 1
+        f.close()
+       
+
+
+
+
+    def split_by_size(self, size, ext, dir):     # size = size of the new files in bytes, ext = file extension, dir = directory to store put output files
         """Divide larger file into smaller files based on size."""
         # ABSTRACT: https://stackoverflow.com/questions/8096614/split-large-files-using-python/8096846#8096846
 
@@ -101,4 +157,4 @@ if __name__ == '__main__':
 
     file_lines = [lines.replace("\n", '') for lines in file_lines]
     lines = Text(file_lines)
-    lines.split_by_lines(No_lines=len(file_lines), divfiles=12)     # Could potentially have one more than divfile based on remainder.
+    lines.divide_by_lines(No_lines=len(file_lines), divfiles=12)     # Could potentially have one more than divfile based on remainder.
