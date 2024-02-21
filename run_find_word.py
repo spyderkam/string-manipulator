@@ -2,7 +2,7 @@ from glob import glob
 from string_manipulator import Text     # As of now string_manipulator only has Text class.
 
 
-word = input(f"What is the word you want to find? ").lower()
+word = input("What is the word you want to find? ").lower()
 o_or_m = input(f"Do you want to find the word '{word}' in just one file or multiple files with a specific extension? Enter 'o' for one or 'm' for multiple: ")
 
 
