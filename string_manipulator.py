@@ -1,5 +1,8 @@
 # May and probably will fail certain test cases. Could give it a better name, maybe not?
 
+import subprocess
+
+
 class Text:
     """Text class for input file."""
 
@@ -46,7 +49,7 @@ class Text:
 
         # When in Unix can use subprocess to create smaller_files directory here.
         for i in range(No_new_files):
-            new_file = open(f"smaller_files/{i}_file.{extension}", "w")
+            new_file = open(f"less_line_files/{i}_file.{extension}", "w")
 
             if i + 1 != No_new_files:
                 lines_to_write = ogfl[i*mnlef:(i+1)*mnlef]
@@ -60,6 +63,41 @@ class Text:
                     line = str(line)
                     new_file.writelines(line[1:-2] + "\n")
             new_file.close()
+
+
+    def split_by_size(self, size, ext):     # size = size of the new files in bytes, ext = file extension
+        """Divide larger file into a divfiles number of files potentially + 1."""
+        # ABSTRACT: https://stackoverflow.com/questions/8096614/split-large-files-using-python/8096846#8096846
+
+        ogf = self.text     # original file
+        file_number = 0
+        bashCmd = ['mkdir', 'less_size_files']; subprocess.call(bashCmd)
+
+        with open(ogf, "r") as f:
+            while True:
+                temp_lines = f.readlines(size)
+                if not temp_lines: break
+
+                outFile = open(f"less_size_files/outFile%d.{ext}" % file_number, "w")
+                for line in temp_lines:
+                    outFile.write(line)
+                outFile.close()
+
+                file_number += 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
