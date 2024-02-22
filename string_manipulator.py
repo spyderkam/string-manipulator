@@ -10,6 +10,7 @@ class Text:
         self.text = text
 
 
+
     def find_word(self, word):
         """Finding a specific word in the input text; how many times it appears and in what positions."""
 
@@ -34,25 +35,30 @@ class Text:
         return len(index_list), index_list
 
     
-    def divide_by_lines(self, No_lines, divfiles, extension='txt'):     # No_lines = number of lines in original file; divfiles ≈ how many new files
-        """Divide larger file into a divfiles number of files potentially + 1."""
-        # I overcomplicated this.
+
+    def divide_by_lines(self, No_lines, divfiles, extension='txt'):     # No_lines = # of lines in OG file; divfiles = # of new files; extension = extension of output file
+        """Divide larger file into a divfiles number of files."""
 
         ogfl = self.text     # original file lines
         remainder = No_lines % divfiles
         mnlef = int( (No_lines - remainder)/divfiles )     # (m)ax (N)o of (l)ines in (e)ach (f)ile; Always an integer but data type needs to be int for indexing.
 
+
+        # Enable the below the below and replace 'divfiles' with 'No_new_files' in lines with '*****' comment.
+        """
         if remainder != 0:
             # No_new_files will be a list containing the number of files (0 and so on)
             No_new_files = divfiles + 1
         else:
             No_new_files = divfiles
+        """
+
 
         subprocess.call(f"mkdir divfiles", shell=True)     # Must use shell=True otherwise doesn't work on Windows.
-        for i in range(No_new_files):
+        for i in range(divfiles):     # *****
             new_file = open(f"divfiles/{i}_file.{extension}", "w")
 
-            if i + 1 != No_new_files:
+            if i + 1 != divfiles:     # *****
                 lines_to_write = ogfl[i*mnlef:(i+1)*mnlef]
                 for line in lines_to_write:
                     line = str(line)
@@ -67,8 +73,9 @@ class Text:
 
 
 
-    def split_by_lines(self, divlines, ext, dir):     # divlines = max lines in divided files, ext = file extension, dir = directory to store put output files
+    def split_by_lines(self, divlines, ext, dir):     # divlines = max lines in divided files; ext = output extension, dir = directory to store put output files
         """Split input file into output files that have divlines number of lines in them."""
+        # inefficient
 
         ogf = self.text     # original file
         subprocess.call(f"mkdir {dir}", shell=True)     # Must use shell=True otherwise doesn't work on Windows.
@@ -92,7 +99,8 @@ class Text:
         f.close()
        
 
-    def split_by_size(self, size, ext, dir):     # size = size of the new files in bytes, ext = file extension, dir = directory to store put output files
+
+    def split_by_size(self, size, ext, dir):     # size = size of the new files in bytes; ext = output file extension; dir = directory to store put output files
         """Divide larger file into smaller files based on size."""
         # ABSTRACT: https://stackoverflow.com/questions/8096614/split-large-files-using-python/8096846#8096846
 
@@ -114,6 +122,7 @@ class Text:
 
 
 
+
 if __name__ == '__main__':
     # https://www.askpython.com/python/examples/read-file-as-string-in-python
     with open("inputs/missile16.fort13", "r") as f:
@@ -128,4 +137,4 @@ if __name__ == '__main__':
 
     file_lines = [lines.replace("\n", '') for lines in file_lines]
     lines = Text(file_lines)
-    lines.divide_by_lines(No_lines=len(file_lines), divfiles=12)     # Could potentially have one more than divfile based on remainder.
+    lines.divide_by_lines(No_lines=len(file_lines), divfiles=12)     # Could potentially have one more than divfile based on remainder. (divfiles=11 vs 12)
