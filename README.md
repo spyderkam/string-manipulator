@@ -1,4 +1,4 @@
-# <p align="center"> String Manipulation for Boeing </p>
+# <p align="center"> String Manipulation for Boeing </p>     <!--github version not HTML-->
 
 The `Text` class takes in string data and gives out needed data.
 
@@ -23,9 +23,9 @@ The `divide_by_lines` method of the `Text` class divides the input file into a d
 with open("big.txt", "r") as f:
     all_file_lines = f.readlines()
 
-all_file_lines = [lines.replace("\n", '') for lines in file_lines]
-all_lines = string_manipulator.Text(file_lines)
-all_lines.divide_by_lines(No_lines=len(file_lines), divfiles=12, extension='dat')
+all_file_lines = [lines.replace("\n", '') for lines in all_file_lines]
+all_lines = Text(all_file_lines)
+all_lines.divide_by_lines(No_lines=len(file_lines), divfiles=12, extension='dat', dir='nfiles')
 ```
 
 `No_lines` is the number of lines in the input files and $n =$ `divfiles` is the number of files the input file will be divided into. The new files will be named `𝚤_file.extension` where `𝚤` starts from `0`. Each file will have an equal amount of lines in it *but* the <u>last file</u> created *might* be longer than its preceding files depending on `No_lines % divfiles`. <br>
@@ -41,7 +41,7 @@ file.split_by_lines(divlines, ext, dir)
 
 `divlines` is the *maximum* number of lines in the newly created files, `ext` is the extension of the new files, and `dir` is the directory which they will be stored in. The last generated file might have less than `divlines` depending on the number of lines in the input file. The newly created files will be dubbed as `splittedFile_𝚤.ext` where `𝚤` starts from `0`. <br>
 
-### Dividing Large Files Into Smaller Files by Size
+### Split Large Files Into Smaller Files by Size
 
 To split files by the size of their size, call the `split_by_size` method. 
 
