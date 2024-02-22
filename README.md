@@ -1,4 +1,4 @@
-# <center> String Manipulation for Boeing </center>
+# <p align="center"> String Manipulation for Boeing </p>
 
 The `Text` class takes in string data and gives out needed data.
 
