@@ -36,7 +36,7 @@ class Text:
 
     
 
-    def divide_by_lines(self, No_lines, divfiles, extension='txt'):     # No_lines = # of lines in OG file; divfiles = # of new files; extension = extension of output file
+    def divide_by_lines(self, No_lines, divfiles, dir, ext):     # No_lines = # of lines in OG file; divfiles = # of new files; ext = extension of output file
         """Divide larger file into a divfiles number of files."""
 
         ogfl = self.text     # original file lines
@@ -54,21 +54,21 @@ class Text:
         """
 
 
-        subprocess.call(f"mkdir divfiles", shell=True)     # Must use shell=True otherwise doesn't work on Windows.
+        subprocess.call(f"mkdir {dir}", shell=True)     # Must use shell=True otherwise doesn't work on Windows.
         for i in range(divfiles):     # *****
-            new_file = open(f"divfiles/{i}_file.{extension}", "w")
+            new_file = open(f"{dir}/{i}_file.{ext}", "w")
 
             if i + 1 != divfiles:     # *****
                 lines_to_write = ogfl[i*mnlef:(i+1)*mnlef]
                 for line in lines_to_write:
                     line = str(line)
-                    new_file.writelines(line[1:-2] + "\n")     # 1 to -2 in order to eliminate printed quote symbols
+                    new_file.writelines(line + "\n")     # 1 to -2 in order to eliminate printed quote symbols
 
             else:
                 lines_to_write = ogfl[i*mnlef::]               # in case number of lines is less than mnlef
                 for line in lines_to_write:
                     line = str(line)
-                    new_file.writelines(line[1:-2] + "\n")
+                    new_file.writelines(line + "\n")
             new_file.close()
 
 
@@ -137,4 +137,4 @@ if __name__ == '__main__':
 
     file_lines = [lines.replace("\n", '') for lines in file_lines]
     lines = Text(file_lines)
-    lines.divide_by_lines(No_lines=len(file_lines), divfiles=12)     # Could potentially have one more than divfile based on remainder. (divfiles=11 vs 12)
+    lines.divide_by_lines(No_lines=len(file_lines), divfiles=12, extension='txt', dir='divfiles')     # Could potentially have one more than divfile based on remainder. (divfiles=11 vs 12)

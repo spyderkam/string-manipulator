@@ -1,5 +1,6 @@
 from string_manipulator import Text
 
+
 inputFilePath = "inputs/big.txt"
 file = Text(inputFilePath)
 
