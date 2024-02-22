@@ -1,8 +1,6 @@
 # May and probably will fail certain test cases. Could give it a better name, maybe not?
 
-import shutil
 import subprocess
-import os
 
 
 class Text:
@@ -74,21 +72,6 @@ class Text:
 
         ogf = self.text     # original file
         subprocess.call(f"mkdir {dir}", shell=True)     # Must use shell=True otherwise doesn't work on Windows.
-        
-        """
-        f = open(ogf, "r")
-        g = open("temp_file.txt", "w")
-        shutil.copyfile(f, g)
-
-        
-        
-        while count < divlines:
-            count = 0
-            h = open(f"{dir}splittedFile_{count}.{ext}")
-            for line in g:
-                h.write(line + "\n")
-            h.close()
-        """
 
         file_number = 0
         f = open(ogf, "r")
@@ -98,28 +81,16 @@ class Text:
             if not g: break
             outFile = open(f"{dir}/splittedFile_{file_number}.{ext}", "w")
 
-            
-
             for i in range(divlines):
                 x = g.find('\n')
                 h = g[0:x]
-                outFile.write(h + "\n")
-
-                
+                outFile.write(h + "\n")                
                 g = g.lstrip(h).lstrip()
             outFile.close()
-
-            #if os.path.getsize(f"{dir}/splittedFile_{file_number}.{ext}") == 0:
-            #    os.remove(f"{dir}/splittedFile_{file_number}.{ext}")
-            #    print(file_number)
-            #print(file_number, os.path.getsize(f"{dir}/splittedFile_{file_number}.{ext}"))
-                
+        
             file_number = file_number + 1
         f.close()
        
-
-
-
 
     def split_by_size(self, size, ext, dir):     # size = size of the new files in bytes, ext = file extension, dir = directory to store put output files
         """Divide larger file into smaller files based on size."""
