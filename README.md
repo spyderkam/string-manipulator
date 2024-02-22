@@ -25,7 +25,7 @@ with open("big.txt", "r") as f:
 
 all_file_lines = [lines.replace("\n", '') for lines in all_file_lines]
 all_lines = Text(all_file_lines)
-all_lines.divide_by_lines(No_lines=len(file_lines), divfiles=12, extension='dat', dir='nfiles')
+all_lines.divide_by_lines(No_lines=len(all_file_lines), divfiles=12, extension='dat', dir='nfiles')
 ```
 
 `No_lines` is the number of lines in the input files and $n =$ `divfiles` is the number of files the input file will be divided into. The new files will be named `𝚤_file.extension` where `𝚤` starts from `0`. Each file will have an equal amount of lines in it *but* the <u>last file</u> created *might* be longer than its preceding files depending on `No_lines % divfiles`. <br>
