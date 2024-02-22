@@ -42,19 +42,9 @@ class Text:
         ogfl = self.text     # original file lines
         remainder = No_lines % divfiles
         mnlef = int( (No_lines - remainder)/divfiles )     # (m)ax (N)o of (l)ines in (e)ach (f)ile; Always an integer but data type needs to be int for indexing.
-
-
-        # Enable the below the below and replace 'divfiles' with 'No_new_files' in lines with '*****' comment.
-        """
-        if remainder != 0:
-            # No_new_files will be a list containing the number of files (0 and so on)
-            No_new_files = divfiles + 1
-        else:
-            No_new_files = divfiles
-        """
-
-
+   
         subprocess.call(f"mkdir {dir}", shell=True)     # Must use shell=True otherwise doesn't work on Windows.
+
         for i in range(divfiles):     # *****
             new_file = open(f"{dir}/{i}_file.{ext}", "w")
 
@@ -100,12 +90,13 @@ class Text:
        
 
 
-    def split_by_size(self, size, ext, dir):     # size = size of the new files in bytes; ext = output file extension; dir = directory to store put output files
+    def split_by_size(self, size, ext, dir, fname):     # size = size of the new files in bytes; ext = output file extension; dir = directory to store put output files
         """Divide larger file into smaller files based on size."""
         # ABSTRACT: https://stackoverflow.com/questions/8096614/split-large-files-using-python/8096846#8096846
 
         ogf = self.text     # original file
         file_number = 0
+
         subprocess.call(f"mkdir {dir}", shell=True)     # Must use shell=True otherwise doesn't work on Windows.
 
         with open(ogf, "r") as f:
@@ -113,7 +104,11 @@ class Text:
                 temp_lines = f.readlines(size)
                 if not temp_lines: break
 
-                outFile = open(f"{dir}/outFile%d.{ext}" % file_number, "w")
+                if dir:
+                    outFile = open(f"{dir}/{fname}_%d.{ext}" % file_number, "w")
+                elif not dir:     # Just 'else' would suffice.
+                    outFile = open(f"{fname}_%d.{ext}" % file_number, "w")
+
                 for line in temp_lines:
                     outFile.write(line)
                 outFile.close()
