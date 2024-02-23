@@ -4,7 +4,7 @@ from pathlib import Path
 from string_manipulator import Text
 
 
-o_or_m = input("Do you want to split multiple files with a specific extension or just one file? Enter 'o' for one or 'm' for multiple: ").lower()
+o_or_m = input("Do you want to split multiple files with a specific type or just one file? Enter 'o' for one or 'm' for multiple: ").lower()
 
 
 if o_or_m == 'o':

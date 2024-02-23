@@ -132,4 +132,4 @@ if __name__ == '__main__':
 
     file_lines = [lines.replace("\n", '') for lines in file_lines]
     lines = Text(file_lines)
-    lines.divide_by_lines(No_lines=len(file_lines), divfiles=12, extension='txt', dir='divfiles')     # Could potentially have one more than divfile based on remainder. (divfiles=11 vs 12)
+    lines.divide_by_lines(No_lines=len(file_lines), divfiles=12, ext='txt', dir='divfiles')     # Could potentially have one more than divfile based on remainder. (divfiles=11 vs 12)
