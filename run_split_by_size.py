@@ -1,7 +1,7 @@
 from glob import glob
-import os
 from pathlib import Path
 from string_manipulator import Text
+import os
 
 
 o_or_m = input("Do you want to split multiple files with a specific type or just one file? Enter 'o' for one or 'm' for multiple: ").lower()
@@ -12,7 +12,7 @@ if o_or_m == 'o':
     #fileName = os.path.basename(file).split('/')[-1]     # This is better here but using the line below keeps the method more versatile.
     fileName = Path(file).stem     # compare with Path(file).name
     dirName = os.path.abspath( os.path.dirname(file) )
-    size = int(input("What is size of the new files you want (in bytes): "))
+    size = int(input("What is the size of the new files you want (in bytes): "))
 
     last_dot_index = file.rfind(".")
     extension = file[last_dot_index+1::]
@@ -28,7 +28,7 @@ if o_or_m == 'o':
     else:
         raise ValueError("YOU MUST ENTER 'y' FOR YES OR 'n' FOR NO!")
 elif o_or_m == 'm':
-    extension = input("What is the type of the files you want to split?: ").lower()
+    extension = input("Enter the type of the files you want to split: ").lower()
     this_dir_yn = input(f"Are the {extension} type files in the current directory? Enter 'y' for yes or 'n' for no: ").lower()
 
     if this_dir_yn == 'n':

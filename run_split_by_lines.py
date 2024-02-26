@@ -1,7 +1,7 @@
 from string_manipulator import Text
 
 
-inputFilePath = "inputs/big.txt"
+inputFilePath = "inputs/120.txt"
 file = Text(inputFilePath)
 
-file.split_by_lines(1000, "txt", "output")
+file.split_by_lines(3, "txt", "output")
