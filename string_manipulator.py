@@ -1,5 +1,4 @@
-# May and probably will fail certain test cases. Could give it a better name, maybe not?
-
+import os
 import subprocess
 
 
@@ -34,7 +33,7 @@ class Text:
                 break
         return len(index_list), index_list
 
-    
+
 
     def divide_by_lines(self, No_lines, divfiles, dir, ext):     # No_lines = # of lines in OG file; divfiles = # of new files; ext = extension of output file
         """Divide larger file into a divfiles number of files."""
@@ -42,7 +41,7 @@ class Text:
         ogfl = self.text     # original file lines
         remainder = No_lines % divfiles
         mnlef = int( (No_lines - remainder)/divfiles )     # (m)ax (N)o of (l)ines in (e)ach (f)ile; Always an integer but data type needs to be int for indexing.
-   
+
         subprocess.call(f"mkdir {dir}", shell=True)     # Must use shell=True otherwise doesn't work on Windows.
 
         for i in range(divfiles):     # *****
@@ -81,13 +80,13 @@ class Text:
             for i in range(divlines):
                 x = g.find('\n')
                 h = g[0:x]
-                outFile.write(h + "\n")                
+                outFile.write(h + "\n")
                 g = g.lstrip(h).lstrip()
             outFile.close()
-        
+
             file_number = file_number + 1
         f.close()
-       
+
 
 
     def split_by_size(self, size, ext, dir, fname):     # size = size of the new files in bytes; ext = output file extension; dir = directory to store put output files
@@ -97,17 +96,15 @@ class Text:
         ogf = self.text     # original file
         file_number = 0
 
-        subprocess.call(f"mkdir {dir}", shell=True)     # Must use shell=True otherwise doesn't work on Windows.
+        if not os.path.isdir(dir):
+            subprocess.call(f"mkdir {dir}", shell=True)     # Must use shell=True otherwise doesn't work on Windows.
 
         with open(ogf, "r") as f:
             while True:
                 temp_lines = f.readlines(size)
                 if not temp_lines: break
 
-                if dir:
-                    outFile = open(f"{dir}/{fname}_%d.{ext}" % file_number, "w")
-                elif not dir:     # Just 'else' would suffice.
-                    outFile = open(f"{fname}_%d.{ext}" % file_number, "w")
+                outFile = open(f"{dir}/{fname}_%d.{ext}" % file_number, "w")
 
                 for line in temp_lines:
                     outFile.write(line)
