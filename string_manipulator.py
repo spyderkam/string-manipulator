@@ -83,7 +83,7 @@ class Text:
                 lines_to_write = lines_to_write.lstrip(y).lstrip()
             outFile.close()
 
-            file_number = file_number + 1
+            file_number += 1
         inFile.close()
 
 

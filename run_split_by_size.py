@@ -21,7 +21,7 @@
 #        if yes:
 #          7) Enter one path to the muiltiple alternative directories and they will be generated distinctively by count: COMPLETE.
 #    if no: 
-#      4) Enter the path to the directory which the txt type files are in:
+#      4) Enter the path to the directory which the input type files are in:
 #      5) What is size of the new files you want (in bytes)?
 #      6) Do you want to store the new files in an alternative directory?
 #      if no:
