@@ -1,3 +1,35 @@
+# This code applies the "split_by_size" method of the Text class in string_manipulator.py. Once executed, it will prompt the user a few questions:
+#   1) Do you want to split multiple files with a specific type or just one file?
+#   if one:
+#    2) Enter the path to the file you are trying to split:
+#    3) What is the size of the new files you want (in bytes)?
+#    4) Do you want to store the new files in an alternative directory?
+#    if no: COMPLETE.
+#    if yes: COMPLETE.
+#      5) Enter the path to the alternative directory:
+#   if multiple:
+#    2) Enter the type of the files you want to split:
+#    3) Are the input type files in the current directory?
+#    if yes:
+#      4) What is size of the new files you want (in bytes)?
+#      5) Do you want to store the new files in an alternative directory?
+#      if no: COMPLETE.
+#      if yes:
+#        6) Do you want each set of splitted files to be in a seperate directory?
+#        if no: 
+#          7) Enter the path to the singular alternative directory: COMPLETE.
+#        if yes:
+#          7) Enter one path to the muiltiple alternative directories and they will be generated distinctively by count: COMPLETE.
+#    if no: 
+#      4) Enter the path to the directory which the txt type files are in:
+#      5) What is size of the new files you want (in bytes)?
+#      6) Do you want to store the new files in an alternative directory?
+#      if no:
+#        7) Enter the path to the singular alternative directory: COMPLETE.
+#      if yes:
+#        7) Enter one path to the muiltiple alternative directories and they will be generated distinctively by count: COMPLETE.
+
+
 from glob import glob
 from pathlib import Path
 from string_manipulator import Text
@@ -12,7 +44,7 @@ if o_or_m == 'o':
     #fileName = os.path.basename(file).split('/')[-1]     # This is better here but using the line below keeps the method more versatile.
     fileName = Path(file).stem     # compare with Path(file).name
     dirName = os.path.abspath( os.path.dirname(file) )
-    size = int(input("What is the size of the new files you want (in bytes): "))
+    size = int(input("What is the size of the new files you want (in bytes)? "))
 
     last_dot_index = file.rfind(".")
     extension = file[last_dot_index+1::]
@@ -42,7 +74,7 @@ elif o_or_m == 'm':
     else:
         raise ValueError("YOU MUST ENTER 'y' FOR YES OR 'n' FOR NO!")
 
-    size = int(input("What is size of the new files you want (in bytes): "))
+    size = int(input("What is size of the new files you want (in bytes)? "))
     count = 0
     alt_dir_yn = input("Do you want to store the new files in an alternative directory? Enter 'y' for yes or 'n' for no: ").lower()
 
