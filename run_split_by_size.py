@@ -5,8 +5,8 @@
 #    3) What is the size of the new files you want (in bytes)?
 #    4) Do you want to store the new files in an alternative directory?
 #    if no: COMPLETE.
-#    if yes: COMPLETE.
-#      5) Enter the path to the alternative directory:
+#    if yes: 
+#      5) Enter the path to the alternative directory: COMPLETE.
 #   if multiple:
 #    2) Enter the type of the files you want to split:
 #    3) Are the input type files in the current directory?
