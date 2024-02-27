@@ -5,8 +5,8 @@ import subprocess
 class Text:
     """Text class for input file."""
 
-    def __init__(self, text):
-        self.text = text
+    def __init__(self, object):
+        self.object = object
 
 
 
@@ -16,7 +16,7 @@ class Text:
         if word != word.lower():
             raise ValueError("Enter word in all lowercase.")
 
-        TEXT = self.text     # Using a variable placeholder for self.text so that self.text would not be modified.
+        TEXT = self.object     # Using a variable placeholder for self.object so that self.object would not be modified.
         index_list = []
         word_in_text = True
 
@@ -36,8 +36,9 @@ class Text:
 
     def divide_by_lines(self, No_lines, divfiles, folder, ext):     # No_lines = # of lines in inFile; divfiles = # of new files; folder = output dir; ext = type of outFile
         """Divide larger file into a divfiles number of files."""
+        # I don't think this is a great implementation considering the way it's execution given an input file.
 
-        ogfl = self.text     # original file lines
+        ogfl = self.object     # original file lines
         remainder = No_lines % divfiles
         mnlef = int( (No_lines - remainder)/divfiles )     # (m)ax (N)o of (l)ines in (e)ach (f)ile; Always an integer but data type needs to be int for indexing.
 
@@ -66,7 +67,7 @@ class Text:
         """Split input file into output files that have maximum divlines number of lines in them."""
         # inefficient
 
-        ogf = self.text     # original file
+        ogf = self.object     # original file
         subprocess.call(f"mkdir {folder}", shell=True)     # Must use shell=True otherwise doesn't work on Windows.
 
         file_number = 0
@@ -88,11 +89,11 @@ class Text:
 
 
 
-    def split_by_size(self, size, ext, folder, fname):     # size = size of the new files in bytes; ext = output file extension; folder = directory to store put output files
+    def split_by_size(self, size, ext, folder, fname):     # size = new file size (bytes); ext = outFile type; folder = dir to store put outFile; fname = outFile name
         """Divide larger file into smaller files based on size."""
         # ABSTRACT: https://stackoverflow.com/questions/8096614/split-large-files-using-python/8096846#8096846
 
-        ogf = self.text     # original file
+        ogf = self.object     # original file
         file_number = 0
 
         if not os.path.isdir(folder):
@@ -129,4 +130,4 @@ if __name__ == '__main__':
 
     file_lines = [lines.replace("\n", '') for lines in file_lines]
     lines = Text(file_lines)
-    lines.divide_by_lines(No_lines=len(file_lines), divfiles=12, ext='txt', folder='divfiles')     # Could potentially have one more than divfile based on remainder. (divfiles=11 vs 12)
+    lines.divide_by_lines(No_lines=len(file_lines), divfiles=12, ext='txt', folder='divfiles')

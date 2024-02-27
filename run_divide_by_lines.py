@@ -48,8 +48,7 @@ elif o_or_m == 'm':
             
             all_file_lines = [lines.replace("\n", '') for lines in all_file_lines]
             all_lines = Text(all_file_lines)
-            all_lines.divide_by_lines(
-                len(all_file_lines), n, f'nfiles{count}', extension)
+            all_lines.divide_by_lines(len(all_file_lines), n, f'nfiles{count}', extension)
 
         count += 1
 else:
