@@ -47,9 +47,9 @@ To split files by the size of their size, call the `split_by_size` method.
 
 ```
 file = Text(input_file)
-file.split_by_size(size, ext, folder)
+file.split_by_size(size, ext, folder, fname)
 ```
-`size` is the size of the output files in bytes, `ext` is the extension of both the input and output files, and `folder` is the directory which the *output files* will be stored in. If `folder` does not exist then the program will create it. The new files will be named `outFile𝚤.ext` where `𝚤` starts from `0`. <br>
+`size` is the size of the output files in bytes, `ext` is the extension of both the input and output files, and `folder` is the directory which the *output files* will be stored in. If `folder` does not exist then the program will create it. The new files will be named `fname_𝚤.ext` where `𝚤` starts from `0`. <br>
 
 ## Automatic Execution of Methods
 
