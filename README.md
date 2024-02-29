@@ -46,6 +46,7 @@ file.split_by_lines(divlines, ext, folder)
 To split files by the size of their size, call the `split_by_size` method. 
 
 ```
+input_file = "path/to/file"
 file = Text(input_file)
 file.split_by_size(size, ext, folder, fname)
 ```
