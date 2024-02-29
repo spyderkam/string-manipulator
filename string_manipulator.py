@@ -1,4 +1,5 @@
 import os
+import re
 import subprocess
 
 
@@ -10,26 +11,12 @@ class Text:
 
 
 
-    def find_string(self, word):
-        """Finding a specific word in the input text; how many times it appears and in what positions."""
+    def find_string(self, substring):
+        """Finding a substring; how many times it appears and in what positions."""
 
-        if word != word.lower():
-            raise ValueError("Enter word in all lowercase.")
+        TEXT = self.object     # Using a variable placeholder so that self.object would not be modified.
+        index_list = [term.start() for term in re.finditer(substring, TEXT)]
 
-        TEXT = self.object     # Using a variable placeholder for self.object so that self.object would not be modified.
-        index_list = []
-        word_in_text = True
-
-        while word_in_text:
-            i = (TEXT).find(word)
-            if i != -1:
-                index_list.append(i)
-
-                TEXT = [*TEXT]           # Convert string to list of charachters.
-                TEXT[i] = "A"            # Placeholder letter, must be capital in this implementation.
-                TEXT = ''.join(TEXT)     # Convert back to string.
-            else:
-                break
         return len(index_list), index_list
 
 
@@ -54,7 +41,7 @@ class Text:
                     line = str(line)
                     new_file.writelines(line + "\n")    
             else:
-                lines_to_write = ogfl[i*mnlef::]               # in case number of lines is less than mnlef
+                lines_to_write = ogfl[i*mnlef::]     # put all remaining lines in the last outFile
 
                 for line in lines_to_write:
                     line = str(line)
@@ -89,16 +76,16 @@ class Text:
 
 
 
-    def split_by_size(self, size, ext, folder, fname):     # size = new file size (bytes); ext = outFile type; folder = dir to store put outFile; fname = outFile name
+    def split_by_size(self, size, ext, folder, fname):     # size = new file size (bytes); ext = outFile type; folder = dir to store outFile; fname = outFile name
         """Divide larger file into smaller files based on size."""
         # ABSTRACT: https://stackoverflow.com/questions/8096614/split-large-files-using-python/8096846#8096846
 
-        ogf = self.object     # original file
+        ogf = self.object     # original file path
         file_number = 0
 
         if not os.path.isdir(folder):
-            # Must use shell=True otherwise doesn't work on Windows.
-            subprocess.call(f"mkdir {folder}", shell=True)
+            subprocess.call(f"mkdir {folder}", shell=True) 
+            # Must use shell=True otherwise doesn't seem to work on Windows(?)
 
         with open(ogf, "r") as f:
             while True:
