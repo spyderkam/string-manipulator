@@ -8,7 +8,7 @@ The `Text` class takes in string data and gives out needed data.
 
 The `find_string` method returns a tuple of the number of times a word of interest appears in a text as well as the starting position of the first charachter of that word.
 
-```
+```python
 text = string_manipulator.Text(input_text)
 finder = text.find_string
 ```
@@ -19,7 +19,7 @@ Here, applying `finder(word)[0]` will return the number of times `word` appears 
 
 The `divide_by_lines` method of the `Text` class divides the input file into a desired amount of smaller files. It can make the output files into any desired extension.
 
-```
+```python
 with open("big.txt", "r") as f:
     all_file_lines = f.readlines()
 
@@ -34,7 +34,7 @@ all_lines.divide_by_lines(No_lines=len(all_file_lines), divfiles=12, folder='nfi
 
 To split a file into smaller file where each file has no more than a certain amount of lines in it use the `split_by_lines` method of the `Text` class. 
 
-```
+```python
 file = Text(inputFile)
 file.split_by_lines(divlines, ext, folder)
 ```
@@ -45,7 +45,7 @@ file.split_by_lines(divlines, ext, folder)
 
 To split files by the size of their size, call the `split_by_size` method. 
 
-```
+```python
 file = Text(input_file)
 file.split_by_size(size, ext, folder, fname)
 ```
