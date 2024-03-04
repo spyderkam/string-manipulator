@@ -54,4 +54,4 @@ file.split_by_size(size, ext, folder, fname)
 ## Automatic Execution of Methods
 
 If you wish to automatically have these methods applied, simply just execute one of the `run_method.py` scripts. Once any one of them has been ran, a series of questions will be prompted in the terminal's user interface and you can apply the respective method to one or multiple files in the directory or a subdirectory. <br>
-&nbsp;&nbsp;&nbsp;&nbsp;`run_split_by_lines.py` and `run_divide_by_lines.py` are currently in development. Please ignore `run_all.py`.
+&nbsp;&nbsp;&nbsp;&nbsp;`run_split_by_lines.py` and `run_divide_by_lines.py` are currently in development.

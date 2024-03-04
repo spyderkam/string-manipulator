@@ -14,22 +14,22 @@ class Text:
     def find_string(self, substring):
         """Finding a substring; how many times it appears and in what positions."""
 
-        TEXT = self.object     # Using a variable placeholder so that self.object would not be modified.
+        TEXT = self.object     # Placeholder so that self.object would not be modified.
         index_list = [term.start() for term in re.finditer(substring, TEXT)]
 
         return len(index_list), index_list
 
 
 
-    def divide_by_lines(self, No_lines, divfiles, folder, ext):     # No_lines = # of lines in inFile; divfiles = # of new files; folder = output dir; ext = type of outFile
+    def divide_by_lines(self, No_lines, divfiles, folder, ext):     # No_lines = # of lines in inFile; divfiles = # of new files; folder = output dir; ext = outFile type
         """Divide larger file into a divfiles number of files."""
-        # I don't think this is a great implementation considering the way it's execution given an input file.
+        # Efficient or not?
 
         ogfl = self.object     # original file lines
         remainder = No_lines % divfiles
-        mnlef = int( (No_lines - remainder)/divfiles )     # (m)ax (N)o of (l)ines in (e)ach (f)ile; Always an integer but data type needs to be int for indexing.
+        mnlef = int((No_lines - remainder)/divfiles)     # (m)ax (N)o of (l)ines in (e)ach (f)ile; data type must be int for indexing.
 
-        subprocess.call(f"mkdir {folder}", shell=True)     # Must use shell=True otherwise doesn't work on Windows.
+        subprocess.call(f"mkdir {folder}", shell=True)   # Must use shell=True otherwise won't work on Windows(?)
 
         for i in range(divfiles): 
             new_file = open(f"{folder}/{i}_file.{ext}", "w")
@@ -41,7 +41,7 @@ class Text:
                     line = str(line)
                     new_file.writelines(line + "\n")    
             else:
-                lines_to_write = ogfl[i*mnlef::]     # put all remaining lines in the last outFile
+                lines_to_write = ogfl[i*mnlef::]     # Put all remaining lines in the last outFile.
 
                 for line in lines_to_write:
                     line = str(line)
@@ -50,12 +50,12 @@ class Text:
 
 
 
-    def split_by_lines(self, divlines, ext, folder):     # divlines = max lines in divided files; ext = output extension, folder = directory to store put output files
+    def split_by_lines(self, divlines, ext, folder):     # divlines = max No lines in outFiles; ext = output type, folder = directory to store put outFiles
         """Split input file into output files that have maximum divlines number of lines in them."""
         # inefficient
 
         ogf = self.object     # original file
-        subprocess.call(f"mkdir {folder}", shell=True)     # Must use shell=True otherwise doesn't work on Windows.
+        subprocess.call(f"mkdir {folder}", shell=True)   # Must use shell=True otherwise won't work on Windows(?)
 
         file_number = 0
         inFile = open(ogf, "r")
@@ -76,7 +76,7 @@ class Text:
 
 
 
-    def split_by_size(self, size, ext, folder, fname):     # size = new file size (bytes); ext = outFile type; folder = dir to store outFile; fname = outFile name
+    def split_by_size(self, size, ext, folder, fname):     # size = outFile size (bytes); ext = outFile type; folder = dir to store outFile; fname = outFile name
         """Divide larger file into smaller files based on size."""
         # ABSTRACT: https://stackoverflow.com/questions/8096614/split-large-files-using-python/8096846#8096846
 
@@ -84,8 +84,7 @@ class Text:
         file_number = 0
 
         if not os.path.isdir(folder):
-            subprocess.call(f"mkdir {folder}", shell=True) 
-            # Must use shell=True otherwise doesn't seem to work on Windows(?)
+            subprocess.call(f"mkdir {folder}", shell=True)     # Must use shell=True otherwise won't work on Windows(?)
 
         with open(ogf, "r") as f:
             while True:
