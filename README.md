@@ -50,8 +50,3 @@ file = Text(input_file)
 file.split_by_size(size, ext, folder, fname)
 ```
 `size` is the size of the output files in bytes, `ext` is the extension of both the input and output files, and `folder` is the directory which the *output files* will be stored in. If `folder` does not exist then the program will create it. The new files will be named `fname_𝚤.ext` where `𝚤` starts from `0`. <br>
-
-## Automatic Execution of Methods
-
-If you wish to automatically have these methods applied, simply just execute one of the `run_method.py` scripts. Once any one of them has been ran, a series of questions will be prompted in the terminal's user interface and you can apply the respective method to one or multiple files in the directory or a subdirectory. <br>
-&nbsp;&nbsp;&nbsp;&nbsp;`run_split_by_lines.py` and `run_divide_by_lines.py` are currently in development.
