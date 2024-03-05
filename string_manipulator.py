@@ -9,8 +9,6 @@ class Text:
     def __init__(self, object):
         self.object = object
 
-
-
     def find_string(self, substring):
         """Finding a substring; how many times it appears and in what positions."""
 
@@ -18,8 +16,6 @@ class Text:
         index_list = [term.start() for term in re.finditer(substring, TEXT)]
 
         return len(index_list), index_list
-
-
 
     def divide_by_lines(self, No_lines, divfiles, folder, ext):     # No_lines = # of lines in inFile; divfiles = # of new files; folder = output dir; ext = outFile type
         """Divide larger file into a divfiles number of files."""
@@ -48,8 +44,6 @@ class Text:
                     new_file.writelines(line + "\n")
             new_file.close()
 
-
-
     def split_by_lines(self, divlines, ext, folder):     # divlines = max No lines in outFiles; ext = output type, folder = directory to store put outFiles
         """Split input file into output files that have maximum divlines number of lines in them."""
         # inefficient
@@ -74,8 +68,6 @@ class Text:
             file_number += 1
         inFile.close()
 
-
-
     def split_by_size(self, size, ext, folder, fname):     # size = outFile size (bytes); ext = outFile type; folder = dir to store outFile; fname = outFile name
         """Divide larger file into smaller files based on size."""
         # ABSTRACT: https://stackoverflow.com/questions/8096614/split-large-files-using-python/8096846#8096846
@@ -98,7 +90,6 @@ class Text:
                 outFile.close()
 
                 file_number += 1
-
 
 
 
