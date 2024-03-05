@@ -109,7 +109,7 @@ class ExSpread:
         self.string = string
 
 
-    def mk_time_stamp_sheet(self, folder, fname):  # folder = outFile dir; fname = outFile name
+    def mk_time_sheet(self, folder, fname):  # folder = outFile dir; fname = outFile name
         """Making xlsx/CSV(?) file with time stamps"""
 
         ogf = self.object     # original file path
@@ -148,4 +148,4 @@ if __name__ == "__main__":
     """Testing"""
 
     input_file = ExSpread("sample_inputs/sample.ascii_out", "K11_3_1_HEARTBEAT_MO.INSTANCΕ")
-    input_file.mk_time_stamp_sheet(os.getcwd(), "outFile")
+    input_file.mk_time_sheet(os.getcwd(), "outFile")
