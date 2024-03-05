@@ -90,3 +90,4 @@ class Text:
                 outFile.close()
 
                 file_number += 1
+            outFile.close()
