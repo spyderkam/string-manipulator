@@ -140,7 +140,7 @@ class ExSpread:
         df = pd.DataFrame({'year': arr[0], 'month': arr[1], 'day': arr[2], 'hour': arr[3],
                            'minute': arr[4], 'second': arr[5], 'time_zone': arr[6]})
 
-        df.to_excel(f"{folder}/{fname}.xlsx", index=False)  # df.to_csv vs df.to_excel
+        df.to_cvs(f"{folder}/{fname}.CVS", index=False)  # df.to_csv vs df.to_excel
 
 
 
