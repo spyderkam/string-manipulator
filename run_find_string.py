@@ -1,5 +1,5 @@
 from glob import glob
-from string_manipulator import Text     # As of now string_manipulator only has Text class.
+from string_manipulator import Text
 
 
 word = input("What is the string you want to find? ")
