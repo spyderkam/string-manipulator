@@ -38,8 +38,8 @@ elif o_or_m == 'm':
         raise ValueError("YOU MUST ENTER 'y' FOR YES OR 'n' FOR NO!")
 
     texts = []
-    No_times = []      # list of number of times the word appears in each file
-    # indexes = []     # list of the first index of the word in each file (list of lists)
+    No_times = []      # List of number of times the word appears in each file.
+    # indexes = []     # List of the first index of the word in each file (list of lists).
         
     for file in files:
         with open(file, "r") as f:
