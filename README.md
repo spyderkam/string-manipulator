@@ -1,8 +1,8 @@
 # <p align="center"> String Manipulation for Boeing </p>     <!--github version not HTML-->
 
-The `Text` class takes in string data and gives out needed data.
+## Text Class
 
-## Methods
+The `Text` class takes in string data and gives out needed data.
 
 ### Finding Strings
 
