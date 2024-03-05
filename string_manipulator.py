@@ -112,7 +112,7 @@ class ExSpread:
     def mk_time_sheet(self, folder, fname):  # folder = outFile dir; fname = outFile name
         """Making xlsx/CSV(?) file with time stamps"""
 
-        ogf = self.path     # original file path
+        ogf = self.fpath     # original file path
         s = self.string      # string to be searched
 
         if not os.path.isdir(folder):
