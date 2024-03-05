@@ -120,15 +120,12 @@ class ExSpread:
 
         rows = []         
         with open(ogf, "r", encoding="utf8") as f:
-            while True:
-                temp_lines = f.readlines()
-                if not temp_lines: break
-
-                for lineNo_m1, line in enumerate(temp_lines):     # lineNo_p1 = line No - 1
-                    if line.strip() == s:
-                        rows.extend([temp_lines[lineNo_m1+1].strip().split(),
-                                    temp_lines[lineNo_m1+2].strip().split(),
-                                    temp_lines[lineNo_m1+3].strip().split()])
+            temp_lines = f.readlines()
+            for lineNo_m1, line in enumerate(temp_lines):     # lineNo_p1 = 'line number' - 1
+                if line.strip() == s:
+                    rows.extend([temp_lines[lineNo_m1+1].strip().split(),
+                                temp_lines[lineNo_m1+2].strip().split(),
+                                temp_lines[lineNo_m1+3].strip().split()])
 
         arr = np.zeros((len(rows),len(max(rows,key = lambda x: len(x)))), dtype='<U11')
         arr[:] = " "     # compare with np.nan
@@ -139,8 +136,8 @@ class ExSpread:
 
         df = pd.DataFrame({'year': arr[0], 'month': arr[1], 'day': arr[2], 'hour': arr[3],
                            'minute': arr[4], 'second': arr[5], 'time_zone': arr[6]})
+        df.to_csv(f"{folder}/{fname}.CSV", index=False)  # df.to_csv vs df.to_excel
 
-        df.to_cvs(f"{folder}/{fname}.CVS", index=False)  # df.to_csv vs df.to_excel
 
 
 
