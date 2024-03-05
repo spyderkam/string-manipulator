@@ -8,6 +8,7 @@ The `Text` class takes in string data and gives out needed data.
 
 The `find_string` method returns a tuple of the number of times a word of interest appears in a text as well as the starting position of the first charachter of that word.
 
+<!--# https://www.askpython.com/python/examples/read-file-as-string-in-python-->
 ```python
 text = string_manipulator.Text(input_text)
 finder = text.find_string
