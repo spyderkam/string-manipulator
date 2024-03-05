@@ -90,21 +90,3 @@ class Text:
                 outFile.close()
 
                 file_number += 1
-
-
-
-if __name__ == '__main__':
-    # https://www.askpython.com/python/examples/read-file-as-string-in-python
-    with open("inputs/missile16.fort13", "r") as f:
-        data = f.read().lower()
-
-    text = Text(data)
-    print(text.find_string('missile'))
-
-
-    with open("inputs/big.txt", "r") as f:
-        file_lines = f.readlines()
-
-    file_lines = [lines.replace("\n", '') for lines in file_lines]
-    lines = Text(file_lines)
-    lines.divide_by_lines(No_lines=len(file_lines), divfiles=12, ext='txt', folder='divfiles')
