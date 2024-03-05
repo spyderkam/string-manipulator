@@ -9,14 +9,14 @@ import subprocess
 class Text:
     """Text class for input file."""
 
-    def __init__(self, object):
-        self.object = object
+    def __init__(self, content):
+        self.content = content
 
 
     def find_string(self, substring):
         """Finding a substring; how many times it appears and in what positions."""
 
-        TEXT = self.object     # Placeholder so that self.object would not be modified.
+        TEXT = self.content     # Placeholder so that self.content would not be modified.
         index_list = [term.start() for term in re.finditer(substring, TEXT)]
 
         return len(index_list), index_list
@@ -26,7 +26,7 @@ class Text:
         """Divide larger file into a divfiles number of files."""
         # Efficient or not?
 
-        ogfl = self.object     # original file lines
+        ogfl = self.content     # original file lines
         remainder = No_lines % divfiles
         mnlef = int((No_lines - remainder)/divfiles)     # (m)ax (N)o of (l)ines in (e)ach (f)ile; data type must be int for indexing.
 
@@ -54,7 +54,7 @@ class Text:
         """Split input file into output files that have maximum divlines number of lines in them."""
         # inefficient
 
-        ogf = self.object     # original file
+        ogf = self.content     # original file path
         subprocess.call(f"mkdir {folder}", shell=True)   # Must use shell=True otherwise won't work on Windows(?)
 
         file_number = 0
@@ -79,7 +79,7 @@ class Text:
         """Divide larger file into smaller files based on size."""
         # ABSTRACT: https://stackoverflow.com/questions/8096614/split-large-files-using-python/8096846#8096846
 
-        ogf = self.object     # original file path
+        ogf = self.content     # original file path
         file_number = 0
 
         if not os.path.isdir(folder):
@@ -104,16 +104,16 @@ class Text:
 class ExSpread:
     """Spreadsheet related manipulation."""
 
-    def __init__(self, object, string=None):
-        self.object = object
+    def __init__(self, fpath, string=None):
+        self.fpath = fpath
         self.string = string
 
 
     def mk_time_sheet(self, folder, fname):  # folder = outFile dir; fname = outFile name
         """Making xlsx/CSV(?) file with time stamps"""
 
-        ogf = self.object     # original file path
-        s = self.string       # string to be searched
+        ogf = self.path     # original file path
+        s = self.string      # string to be searched
 
         if not os.path.isdir(folder):
             subprocess.call(f"mkdir {folder}", shell=True)
