@@ -21,8 +21,6 @@ if o_or_m == 'o':
         all_file_lines = [lines.replace("\n", '') for lines in all_file_lines]
         all_lines = Text(all_file_lines)
         all_lines.divide_by_lines(No_lines=len(all_file_lines), divfiles=n, ext=extension, dir='nfiles')
-
-
 elif o_or_m == 'm':
     extension = input("What is the extension of the files you want to split?: ")
     this_dir_yn = input(f"Are the {extension} files in the current directory? Enter 'y' for yes or 'n' for no: ")
