@@ -109,8 +109,8 @@ class ExSpread:
         self.string = string
 
 
-    def mk_time_sheet(self, folder, fname):  # folder = outFile dir; fname = outFile name
-        """Making xlsx/CSV(?) file with time stamps"""
+    def mk_timesheet(self, folder, fname):  # folder = outFile dir; fname = outFile name
+        """Making xlsx/CSV(?) file with timestamps"""
 
         ogf = self.fpath     # original file path
         s = self.string      # string to be searched
@@ -147,4 +147,4 @@ if __name__ == "__main__":
     """Testing"""
 
     input_file = ExSpread("sample_inputs/sample.ascii_out", "K11_3_1_HEARTBEAT_MO.INSTANCΕ")
-    input_file.mk_time_sheet(os.getcwd(), "outFile")
+    input_file.mk_timesheet(os.getcwd(), "outFile")
