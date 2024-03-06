@@ -104,16 +104,16 @@ class Text:
 class ExSpread:
     """Spreadsheet related manipulation."""
 
-    def __init__(self, fpath, string=None):
+    def __init__(self, fpath: str, search=None):
         self.fpath = fpath
-        self.string = string
+        self.search = search     # optional parameter to be searched
 
 
-    def mk_timesheet(self, folder, fname):  # folder = outFile dir; fname = outFile name
+    def mk_timesheet(self, folder: str, fname: str):  # folder = outFile dir; fname = outFile name
         """Making xlsx/CSV(?) file with timestamps"""
 
         ogf = self.fpath     # original file path
-        s = self.string      # string to be searched
+        s = self.search      # string to be searched
 
         if not os.path.isdir(folder):
             subprocess.call(f"mkdir {folder}", shell=True)

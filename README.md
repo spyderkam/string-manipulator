@@ -55,6 +55,14 @@ file.split_by_size(size, ext, folder, fname)
 
 ## ExSpread Class
 
-This class is for manipulating data to and/or from spreadsheets.
+This class is for manipulating data to and/or from spreadsheets. `ExSpread` takes in the file path as a string and an *optional* parameter which is used for searching.
 
-### Extrating Timestamps from Files and Writting them to Spreadsheets
+### Extracting Timestamps From Files and Writing Them to Spreadsheets
+
+The `mk_timesheet` method of this class was written with the purpose of extract timestamps from lines beneath certain strings in `.ascii_out` files (although it will work with other file types).
+
+```python
+inFile = ExSpread("path/to/file", "string to be searched")
+inFile.mk_timesheet(folder, fname)
+```
+The path to the directory of the output file is `folder` and `fname` is the name of the output spreadsheet which is of type `.CSV`.
