@@ -54,3 +54,7 @@ file.split_by_size(size, ext, folder, fname)
 
 
 ## ExSpread Class
+
+This class is for manipulating data to and/or from spreadsheets.
+
+### Extrating Timestamps from Files and Writting them to Spreadsheets
