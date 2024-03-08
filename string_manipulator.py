@@ -121,13 +121,12 @@ class ExSpread:
         rows = []         
         with open(ogf, "r", encoding="utf8") as f:
             temp_lines = f.readlines()
-            for lineNo_m1, line in enumerate(temp_lines):     # lineNo_p1 = 'line number' - 1
+            for lineNo_m1, line in enumerate(temp_lines):     # lineNo_m1 = 'line number' - 1
                 if line.strip() == s:
-                    rows.extend([
-                                 temp_lines[lineNo_m1+1].strip().split(),
-                                 temp_lines[lineNo_m1+2].strip().split(),
-                                 temp_lines[lineNo_m1+3].strip().split()
-                                ])
+                    count = 1
+                    while temp_lines[lineNo_m1+count][0] == " " and temp_lines[lineNo_m1+count][1].isdigit():
+                        rows.append(temp_lines[lineNo_m1+count].strip().split())
+                        count += 1
 
         arr = np.zeros((len(rows),len(max(rows, key=lambda x: len(x)))), dtype='<U11')
         arr[:] = " "     # compare with np.nan
