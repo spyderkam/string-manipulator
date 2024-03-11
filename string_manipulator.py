@@ -105,7 +105,7 @@ class ExSpread:
     """Spreadsheet related manipulation."""
 
     def __init__(self, fpath: str, search=None):
-        self.fpath = fpath
+        self.fpath = fpath       # input file path
         self.search = search     # optional parameter to be searched
 
 
@@ -127,6 +127,7 @@ class ExSpread:
                     while temp_lines[lineNo_m1+count][0] == " " and temp_lines[lineNo_m1+count][1].isdigit():
                         rows.append(temp_lines[lineNo_m1+count].strip().split())
                         count += 1
+        
 
         arr = np.zeros((len(rows),len(max(rows, key=lambda x: len(x)))), dtype='<U11')
         arr[:] = " "     # compare with np.nan
@@ -134,16 +135,18 @@ class ExSpread:
         for 𝚤,𝚥 in enumerate(rows):
             arr[𝚤][0:len(𝚥)] = 𝚥
         arr = np.transpose(arr)
-
+        
         df = pd.DataFrame({'year': arr[0], 'month': arr[1], 'day': arr[2], 'hour': arr[3],
                            'minute': arr[4], 'second': arr[5], 'time_zone': arr[6]})
-        df.to_csv(f"{folder}/{fname}.CSV", index=False)  # df.to_csv vs df.to_excel
-
+        
+        # os.path.basename(os.path.dirname(ogf)) is the name of parent directory of ogf
+        outName = f"{os.path.basename(os.path.dirname(ogf))}_{fname}.CSV"
+        df.to_csv(f"{folder}/{outName}", index=False)  # df.to_csv vs df.to_excel
 
 
 
 if __name__ == "__main__":
     """Testing"""
 
-    input_file = ExSpread("sample_inputs/sample.ascii_out", "K11_3_1_HEARTBEAT_MO.INSTANCΕ")
+    input_file = ExSpread("sample_inputs/sample.ascii_out", "K11_3_1_HEARTBEAT_MO.INSTANCE")
     input_file.mk_timesheet(os.getcwd(), "outFile")
