@@ -162,7 +162,6 @@ class ExSpread:
         
         outFile = open(f"{folder}/{fname}.dat", "w")          # .dat vs something else
         for line in new_lines:
-            print(line)
             outFile.write(line + "\n")
         outFile.close()
 
