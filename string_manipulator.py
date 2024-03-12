@@ -144,26 +144,27 @@ class ExSpread:
         df.to_csv(f"{folder}/{outName}", index=False)  # df.to_csv vs df.to_excel
 
 
-    def find_URN_message(self, folder: str, fname: str):  # folder = outFile dir; fname = outFile name
-        """Extract the messages with specific URN."""
+    def find_URN_messages(self, folder: str, fname: str):  # folder = outFile dir; fname = outFile name
+        """Extract messages with specific URN."""
 
         ogf = self.fpath      # original file path
-        URN = self.search     # Sender ID (Unique Reference Number)
+        URN = self.search     # Unique Reference Number (Sender ID)
 
         if not os.path.isdir(folder):
             subprocess.call(f"mkdir {folder}", shell=True)
 
-        new_lines = []         
+        new_lines = []      
         with open(ogf, "r", encoding="utf8") as f:
             temp_lines = f.readlines()
-            for lineNo_m1, line in enumerate(temp_lines):     # lineNo_m1 = 'line number' - 1
-                if URN in line.strip():
-                    new_lines.append(line)
+            for line in temp_lines:
+                if URN in line:     # and if "RECIPIENT not in line"
+                    new_lines.append(line.strip())
         
-        outFile = open(f"{folder}/{fname}.dat", "w")          # .dat vs something else
+        outFile = open(f"{folder}/{fname}.dat", "w")     # .dat vs something else
         for line in new_lines:
-            outFile.write(line + "\n")
+            outFile.write(line + "\n\n")
         outFile.close()
+
 
 
 
@@ -175,5 +176,5 @@ if __name__ == "__main__":
     #input_file.mk_timesheet(os.getcwd(), "outFile")
 
     # Testing ExSpread.find_URN_messages
-    input_file = ExSpread("sample_inputs/logger_tac_sample.ascii_out", "696683")     # raw_input over input for this one
-    input_file.find_URN_message(os.getcwd(), "outFile")
+    input_file = ExSpread("sample_inputs/logger_tac_sample.ascii_out", "696683")     # raw_input() over input() for this one
+    input_file.find_URN_messages(os.getcwd(), "696683_messages")
