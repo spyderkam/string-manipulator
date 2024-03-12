@@ -21,7 +21,7 @@ if o_or_m == 'o':
         s_lst = re.split('[^a-zA-Z]', srch)
         s_lst2 = []
         for term in s_lst:
-            if len(term) >= 4:
+            if len(term) >= 4 and term != "INSTANCE":
                 s_lst2.append(term)
         ss = ('_').join(s_lst2)
 
