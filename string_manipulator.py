@@ -157,7 +157,7 @@ class ExSpread:
         with open(ogf, "r", encoding="utf8") as f:
             temp_lines = f.readlines()
             for line in temp_lines:
-                if URN in line:     # and if "RECIPIENT not in line"
+                if URN in line:     # and if "RECIPIENT" not in line
                     new_lines.append(line.strip())
         
         outFile = open(f"{folder}/{fname}.dat", "w")     # .dat vs something else
