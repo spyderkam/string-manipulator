@@ -69,4 +69,10 @@ The path to the directory of the output file is `folder` and `fname` is the name
 
 ### Finding URN Messages From `.ascii_out` Files
 
-`find_URN_messages`
+To extract all messages *sent* from a specific Unique Reference Number (URN), use the `find_URN_messages` method of `ExSpread` as it will write them all to a `.dat` file.
+
+```python
+inFile = ExSpread("path/to/file", URN)
+inFile.find_URN_messages(folder, fname)
+```
+where `folder` and `fname` follow as they did in the `mk_timesheet` method of this class. Note that `URN` can be entered either as a string or integer.
