@@ -145,7 +145,7 @@ class ExSpread:
 
 
     def find_URN_messages(self, folder: str, fname: str):  # folder = outFile dir; fname = outFile name
-        """Extract messages with specific URN."""
+        """Extract messages with specific sender URN."""
 
         ogf = self.fpath      # original file path
         URN = self.search     # Unique Reference Number (Sender ID)
@@ -157,7 +157,7 @@ class ExSpread:
         with open(ogf, "r", encoding="utf8") as f:
             temp_lines = f.readlines()
             for line in temp_lines:
-                if URN in line and "RECIPIENT" in line:  # 'and "RECIPIENT" in line' may or may not have to be changed?
+                if URN in line and "RECIPIENT" in line:  # 'and "RECIPIENT" in line' may or may not need to be changed?
                     if line.find("URN") < line.find("RECIPIENT"):
                         new_lines.append(line.strip())
         
