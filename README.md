@@ -55,7 +55,7 @@ file.split_by_size(size, ext, folder, fname)
 
 ## ExSpread Class
 
-This class is for manipulating data to and/or from spreadsheets. `ExSpread` takes in the file path as a string and an *optional* parameter which is used for searching.
+This class is for manipulating data <!--to and/or from spreadsheets.--> related to `logger_tac_𝚥.ascii_out` files (where `𝚥` could be any number, etc.). `ExSpread` takes in the file path as a string and an *optional* parameter which is used for searching. Although the name is misleading, `ExSpread` was originally only supposed to be related to spreadsheets; (Ex)cel (Spread)sheet.
 
 ### Extracting Timestamps From Files and Writing Them to Spreadsheets
 
@@ -66,3 +66,7 @@ inFile = ExSpread("path/to/file", "string to be searched")
 inFile.mk_timesheet(folder, fname)
 ```
 The path to the directory of the output file is `folder` and `fname` is the name of the output spreadsheet which is of type `.CSV`.
+
+### Finding URN Messages From `.ascii_out` Files
+
+`find_URN_messages`
