@@ -1,181 +1,78 @@
-import numpy as np
-import os
-import pandas as pd
-import re
-import subprocess
+# <p align="center"> String Manipulation for Boeing </p>     <!--github version not HTML-->
+
+## Text Class
+
+The `Text` class takes in string data and gives out needed data.
+
+### Finding Strings
+
+The `find_string` method returns a tuple of the number of times a word of interest appears in a text as well as the starting position of the first charachter of that word.
+
+<!--# https://www.askpython.com/python/examples/read-file-as-string-in-python-->
+```python
+text = string_manipulator.Text(input_text)
+finder = text.find_string
+```
+
+Here, applying `finder(word)[0]` will return the number of times `word` appears in the inputted string and `finder(word)[1]` will return the starting positions of the first charachter of `word` in input string. <br>
+
+### Dividing Large Files Into $n$ Smaller Files
+
+The `divide_by_lines` method of the `Text` class divides the input file into a desired amount of smaller files. It can make the output files into any desired extension.
+
+```python
+with open("big.txt", "r") as f:
+    all_file_lines = f.readlines()
+
+all_file_lines = [lines.replace("\n", '') for lines in all_file_lines]
+all_lines = Text(all_file_lines)
+all_lines.divide_by_lines(No_lines=len(all_file_lines), divfiles=12, folder='nfiles', ext='dat')
+```
+
+`No_lines` is the number of lines in the input files and $n =$ `divfiles` is the number of files the input file will be divided into. The new files will be named `𝚤_file.extension` where `𝚤` starts from `0`. Each file will have an equal amount of lines in it *but* the <ins>last file</ins> created *might* be longer than its preceding files depending on `No_lines % divfiles`. <br>
+
+### Splitting Large Files Into Files Containing a Maxed Out Number of Lines
+
+To split a file into smaller file where each file has no more than a certain amount of lines in it use the `split_by_lines` method of the `Text` class. 
+
+```python
+file = Text(inputFile)
+file.split_by_lines(divlines, ext, folder)
+```
+
+`divlines` is the *maximum* number of lines in the newly created files, `ext` is the extension of the new files, and `folder` is the directory which they will be stored in. The last generated file might have less than `divlines` depending on the number of lines in the input file. The newly created files will be dubbed as `splittedFile_𝚤.ext` where `𝚤` starts from `0`. <br>
+
+### Split Large Files Into Smaller Files by Size
+
+To split files by the size of their size, call the `split_by_size` method. 
+
+```python
+file = Text(input_file)
+file.split_by_size(size, ext, folder, fname)
+```
+`size` is the size of the output files in bytes, `ext` is the extension of both the input and output files, and `folder` is the directory which the *output files* will be stored in. If `folder` does not exist then the program will create it. The new files will be named `fname_𝚤.ext` where `𝚤` starts from `0`. <br>
 
 
+## ExSpread Class
 
-class Text:
-    """Text class for input file."""
+This class is for manipulating data <!--to and/or from spreadsheets.--> related to `logger_tac_𝚥.ascii_out` files (where `𝚥` could be any number, etc.). `ExSpread` takes in the file path as a string and an *optional* parameter which is used for searching. Although the name is misleading, `ExSpread` was originally only supposed to be related to spreadsheets; (Ex)cel (Spread)sheet.
 
-    def __init__(self, content):
-        self.content = content
+### Extracting Timestamps From Files and Writing Them to Spreadsheets
 
+The `mk_timesheet` method of this class was written with the purpose of extract timestamps from lines beneath certain strings in `.ascii_out` files (although it will work with other file types).
 
-    def find_string(self, substring):
-        """Finding a substring; how many times it appears and in what positions."""
+```python
+inFile = ExSpread("path/to/file", "string to be searched")
+inFile.mk_timesheet(folder, fname)
+```
+The path to the directory of the output file is `folder` and `fname` is the name of the output spreadsheet which is of type `.CSV`.
 
-        TEXT = self.content     # Placeholder so that self.content would not be modified.
-        index_list = [term.start() for term in re.finditer(substring, TEXT)]
+### Finding URN Messages From `.ascii_out` Files
 
-        return len(index_list), index_list
+To extract all messages *sent* from a specific Unique Reference Number (URN), use the `find_URN_messages` method of `ExSpread` as it will write them all to a `.dat` file.
 
-
-    def divide_by_lines(self, No_lines, divfiles, folder, ext):     # No_lines = # of lines in inFile; divfiles = # of new files; folder = output dir; ext = outFile type
-        """Divide larger file into a divfiles number of files."""
-        # Efficient or not?
-
-        ogfl = self.content     # original file lines
-        remainder = No_lines % divfiles
-        mnlef = int((No_lines - remainder)/divfiles)     # (m)ax (N)o of (l)ines in (e)ach (f)ile; data type must be int for indexing.
-
-        subprocess.call(f"mkdir {folder}", shell=True)   # Must use shell=True otherwise won't work on Windows(?)
-
-        for i in range(divfiles): 
-            new_file = open(f"{folder}/{i}_file.{ext}", "w")
-
-            if i + 1 != divfiles:
-                lines_to_write = ogfl[i*mnlef:(i+1)*mnlef]
-
-                for line in lines_to_write:
-                    line = str(line)
-                    new_file.writelines(line + "\n")    
-            else:
-                lines_to_write = ogfl[i*mnlef::]     # Put all remaining lines in the last outFile.
-
-                for line in lines_to_write:
-                    line = str(line)
-                    new_file.writelines(line + "\n")
-            new_file.close()
-
-
-    def split_by_lines(self, divlines, ext, folder):     # divlines = max No lines in outFiles; ext = output type, folder = directory to store put outFiles
-        """Split input file into output files that have maximum divlines number of lines in them."""
-        # inefficient
-
-        ogf = self.content     # original file path
-        subprocess.call(f"mkdir {folder}", shell=True)   # Must use shell=True otherwise won't work on Windows(?)
-
-        file_number = 0
-        inFile = open(ogf, "r")
-        lines_to_write = inFile.read()
-
-        while lines_to_write:
-            outFile = open(f"{folder}/splittedFile_{file_number}.{ext}", "w")
-
-            for i in range(divlines):
-                x = lines_to_write.find('\n')
-                y = lines_to_write[0:x]
-                outFile.write(y + '\n')
-                lines_to_write = lines_to_write.lstrip(y).lstrip()
-            outFile.close()
-
-            file_number += 1
-        inFile.close()
-
-
-    def split_by_size(self, size, ext, folder, fname):     # size = outFile size (bytes); ext = outFile type; folder = dir to store outFile; fname = outFile name
-        """Divide larger file into smaller files based on size."""
-        # ABSTRACT: https://stackoverflow.com/questions/8096614/split-large-files-using-python/8096846#8096846
-
-        ogf = self.content     # original file path
-        file_number = 0
-
-        if not os.path.isdir(folder):
-            subprocess.call(f"mkdir {folder}", shell=True)     # Must use shell=True otherwise won't work on Windows(?)
-
-        with open(ogf, "r") as f:
-            while True:
-                temp_lines = f.readlines(size)
-                if not temp_lines: break
-
-                outFile = open(f"{folder}/{fname}_%d.{ext}" % file_number, "w")
-
-                for line in temp_lines:
-                    outFile.write(line)
-                outFile.close()
-
-                file_number += 1
-            outFile.close()
-
-
-
-class ExSpread:
-    """Spreadsheet related manipulation."""
-
-    def __init__(self, fpath: str, search=None):
-        self.fpath = fpath       # input file path
-        self.search = search     # optional parameter to be searched
-
-
-    def mk_timesheet(self, folder: str, fname: str):  # folder = outFile dir; fname = outFile name
-        """Making xlsx/CSV(?) file with timestamps"""
-
-        ogf = self.fpath     # original file path
-        s = self.search      # string to be searched
-
-        if not os.path.isdir(folder):
-            subprocess.call(f"mkdir {folder}", shell=True)
-
-        rows = []         
-        with open(ogf, "r", encoding="utf8") as f:
-            temp_lines = f.readlines()
-            for lineNo_m1, line in enumerate(temp_lines):     # lineNo_m1 = 'line number' - 1
-                if line.strip() == s:
-                    count = 1
-                    while temp_lines[lineNo_m1+count][0] == " " and temp_lines[lineNo_m1+count][1].isdigit():
-                        rows.append(temp_lines[lineNo_m1+count].strip().split())
-                        count += 1
-        
-
-        arr = np.zeros((len(rows),len(max(rows, key=lambda x: len(x)))), dtype='<U11')
-        arr[:] = " "     # compare with np.nan
-
-        for 𝚤,𝚥 in enumerate(rows):
-            arr[𝚤][0:len(𝚥)] = 𝚥
-        arr = np.transpose(arr)
-        
-        df = pd.DataFrame({'year': arr[0], 'month': arr[1], 'day': arr[2], 'hour': arr[3],
-                           'minute': arr[4], 'second': arr[5], 'time_zone': arr[6]})
-        
-        # os.path.basename(os.path.dirname(ogf)) is the name of parent directory of ogf
-        outName = f"{os.path.basename(os.path.dirname(ogf))}_{fname}.CSV"
-        df.to_csv(f"{folder}/{outName}", index=False)  # df.to_csv vs df.to_excel
-
-
-    def find_URN_messages(self, folder: str, fname: str):  # folder = outFile dir; fname = outFile name
-        """Extract messages with specific sender URN."""
-
-        ogf = self.fpath      # original file path
-        URN = self.search     # Unique Reference Number (Sender ID)
-
-        if not os.path.isdir(folder):
-            subprocess.call(f"mkdir {folder}", shell=True)
-
-        new_lines = []      
-        with open(ogf, "r", encoding="utf8") as f:
-            temp_lines = f.readlines()
-            for line in temp_lines:
-                if URN in line and "RECIPIENT" in line:  # 'and "RECIPIENT" in line' may or may not need to be changed?
-                    if line.find("URN") < line.find("RECIPIENT"):
-                        new_lines.append(line.strip())
-        
-        outFile = open(f"{folder}/{fname}.dat", "w")     # .dat vs something else
-        for line in new_lines:
-            outFile.write(line + "\n\n")
-        outFile.close()
-
-
-
-
-if __name__ == "__main__":
-    """Testing"""
-
-    # Testing ExSpread.mk_timesheet ✓
-    #input_file = ExSpread("sample_inputs/logger_tac_sample.ascii_out", "K69_BLACKBERRY_NN.INSTANCE")
-    #input_file.mk_timesheet(os.getcwd(), "outFile")
-
-    # Testing ExSpread.find_URN_messages
-    input_file = ExSpread("sample_inputs/logger_tac_sample.ascii_out", "696683")     # raw_input() over input() for this one
-    input_file.find_URN_messages(os.getcwd(), "696683_messages")
+```python
+inFile = ExSpread("path/to/file", URN)
+inFile.find_URN_messages(folder, fname)
+```
+where `folder` and `fname` follow as they did in the `mk_timesheet` method of this class. Note that `URN` can be entered either as a string or integer.
