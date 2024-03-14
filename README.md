@@ -67,7 +67,7 @@ inFile.mk_timesheet(folder, fname)
 ```
 The path to the directory of the output file is `folder` and `fname` is the name of the output spreadsheet which is of type `.CSV`.
 
-### Finding URN Messages From `.ascii_out` Files
+### Extracting URN Messages
 
 To extract all messages *sent* from a specific Unique Reference Number (URN), use the `find_URN_messages` method of `ExSpread` as it will write them all to a `.dat` file.
 
