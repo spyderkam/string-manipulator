@@ -1,4 +1,4 @@
-# <p align="center"> String Manipulation for Boeing </p>     <!--github version not HTML-->
+# <p align="center"> INSTRUCTIONS </p>     <!--github version not HTML-->
 
 ## Text Class
 
