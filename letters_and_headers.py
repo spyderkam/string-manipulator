@@ -4,7 +4,7 @@ from xlsxwriter.utility import xl_col_to_name
 
 __author__ = "spyderkam"
 
-def getLetters(headers, dataFrame: 'pandas.core.frame.DataFrame') -> dict:
+def getLetters(headers: list, dataFrame: 'pandas.core.frame.DataFrame') -> dict:
     """Get Excel column letters for given header names."""
     letters = {}
     for header in headers:
@@ -12,7 +12,7 @@ def getLetters(headers, dataFrame: 'pandas.core.frame.DataFrame') -> dict:
         letters[header] = xl_col_to_name(column_number)
     return letters
 
-def getHeaders(letters, dataFrame: 'pandas.core.frame.DataFrame') -> dict:
+def getHeaders(letters: list, dataFrame: 'pandas.core.frame.DataFrame') -> dict:
     """Get header names for given Excel column letters."""
     HEADERS = list(dataFrame.columns)
     headers = {}
