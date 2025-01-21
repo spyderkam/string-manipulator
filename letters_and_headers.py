@@ -28,7 +28,7 @@ def colLetter_to_Num(letter: str) -> int:
 
 def colHeader_to_Letter(requiredColumns: list, dataFrame: 'pandas.core.frame.DataFrame') -> str:
     """Returns a string of column letters for given header names."""
-    requiredColumnLetters = ""
+    requiredColumnLetters = ''
     for i, columnLetter in enumerate((misc.getLetters(column, dataFrame=dataFrame) for column in requiredColumns)):
         columnLetter = list(columnLetter.values())[0]     # should just be one value anyway
         if i == len(requiredColumns) - 1:
@@ -40,7 +40,7 @@ def colHeader_to_Letter(requiredColumns: list, dataFrame: 'pandas.core.frame.Dat
 def stringOfLettersList(headers: list, dataFrame: 'pandas.core.frame.DataFrame') -> str:
     """Return a string type of a list of letters; e.g., 'A, B, C'"""
     letters = list(getLetters(headers, dataFrame).values())
-    requiredColumnLetters = ""
+    requiredColumnLetters = ''
     for i, columnLetter in enumerate(letters):
         if i == len(letters) - 1:
             requiredColumnLetters += columnLetter
