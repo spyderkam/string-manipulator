@@ -38,7 +38,7 @@ def colHeader_to_Letter(requiredColumns: list, dataFrame: 'pandas.core.frame.Dat
     return requiredColumnLetters
 
 def stringOfLettersList(headers: list, dataFrame: 'pandas.core.frame.DataFrame') -> str:
-    """Return a string type of a list of letters; e.g., 'A, B, C'"""
+    """Return a string type of a list of letters; e.g., 'A, B, C'."""
     letters = list(getLetters(headers, dataFrame).values())
     requiredColumnLetters = ''
     for i, columnLetter in enumerate(letters):
