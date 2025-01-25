@@ -156,7 +156,7 @@ Key Features:
 - Error handling for invalid HDF5 files
 - Memory-efficient processing of large files
 
-### Empty Column Filter (emptyColumnFilter.py)
+### Empty Column Filter (empty_column_filter.py)
 
 Identify and filter empty or single-value columns in spreadsheets with detailed analysis capabilities.
 
