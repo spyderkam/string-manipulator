@@ -26,17 +26,6 @@ def colLetter_to_Num(letter: str) -> int:
     """Convert Excel column letter to number (A=0, B=1, etc.)"""
     return sum((ord(char) - ord('A') + 1) * (26 ** i) for i, char in enumerate(reversed(letter))) - 1
 
-def colHeader_to_Letter(requiredColumns: list, dataFrame: 'pandas.core.frame.DataFrame') -> str:
-    """Returns a string of column letters for given header names."""
-    requiredColumnLetters = ''
-    for i, columnLetter in enumerate((misc.getLetters(column, dataFrame=dataFrame) for column in requiredColumns)):
-        columnLetter = list(columnLetter.values())[0]     # should just be one value anyway
-        if i == len(requiredColumns) - 1:
-            requiredColumnLetters += columnLetter
-        else:
-            requiredColumnLetters += columnLetter + ", "
-    return requiredColumnLetters
-
 def stringOfLettersList(headers: list, dataFrame: 'pandas.core.frame.DataFrame') -> str:
     """Return a string type of a list of letters; e.g., 'A, B, C'."""
     letters = list(getLetters(headers, dataFrame).values())
