@@ -23,7 +23,7 @@ git clone [repository-url]
 
 2. Install required dependencies:
 ```bash
-pip install numpy pandas h5py xlsxwriter fileinput
+pip install numpy pandas h5py xlsxwriter
 ```
 
 ## Components
