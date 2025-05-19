@@ -221,8 +221,8 @@ def create_directory_excel(master_path, output_file="directory_info.xlsx"):
     # Initialize Excel writer
     with pd.ExcelWriter(output_file, engine='xlsxwriter') as writer:
         for i, subdir in enumerate(subdirs, 1):
-            # Truncate sheet name to 31 characters if needed
-            sheet_name = subdir[:31]  
+            # Truncate sheet name if needed
+            sheet_name = subdir[:31]  # As low as 24 and as high as 31
             
             # Replace invalid characters in Excel sheet names
             invalid_chars = [':', '\\', '/', '?', '*', '[', ']']
