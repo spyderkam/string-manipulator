@@ -140,7 +140,7 @@ I asked Grok the following question:
 It gave me the previous script (subxlrep_slow.py); which is good, including the progress tracker, apart from two important details:
 
   1. If a subdir name is longer than 24 characters, it gives me an error that the string is too long for an Excel sheet-name. if this is the case, then please have the name truncated to 24 characters for the sheet-name. 
-  2. The master directory I am working with is enormous; i.e., $\propto1\,\mathrm{TB}$, some of the subdirectories are in over $100\,\mathrm{GB}$, it is taking _forever_ to run. The good news is that in there are only nine subdirectories in my master directories, and the _number_ of both files and folders in each subdirectory is _relatively_ low; e.g., there should not be more than 50 items in any given subdirectory.
+  2. The master directory I am working with is enormous; i.e., $\propto1$&nbsp;$\mathrm{TB}$, some of the subdirectories are in over $100$&nbsp;$\mathrm{GB}$, it is taking _forever_ to run. The good news is that in there are only nine subdirectories in my master directories, and the _number_ of both files and folders in each subdirectory is _relatively_ low; e.g., there should not be more than 50 items in any given subdirectory.
 
 Claude Sonnet, please help me with my above issues. Modify my script, or write a new one, whatever you deem best.
 
