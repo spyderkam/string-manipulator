@@ -300,3 +300,8 @@ Key improvements:
 
 This should significantly improve the performance since you mentioned that the subdirectories contain a relatively small number of items (less than 50), but some are very large (100+ GB). The script (<span>subxlrep.py</span>) maintains the same progress tracking functionality from the original but should run much faster since it avoids the deep recursive size calculation that was causing the performance issues.
 
+***
+
+**<u>_Kam_</u>:**
+
+Now I need an efficient deep function.
