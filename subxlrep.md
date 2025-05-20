@@ -304,4 +304,4 @@ This should significantly improve the performance since you mentioned that the s
 
 **<u>_Kam_</u>:**
 
-Now I need an efficient deep function.
+Now I need an efficient deep function instead of `get_dir_size_fast`.
